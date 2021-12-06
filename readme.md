@@ -4,6 +4,8 @@ https://developer.mozilla.org/ru/ MDN - Web docs
 https://ru.stackoverflow.com/ StackOverflow - pull of solved dev problems
 https://learn.javascript.ru/ - nice docs and tutorials
 
+  [Lecture 1](#Heading)
+  [Lecture 2](#Heading)
 
 
 Lecture 1
