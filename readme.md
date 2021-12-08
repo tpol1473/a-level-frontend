@@ -12,7 +12,7 @@ https://www.destroyallsoftware.com/talks/wat
 
 
 Content:
-  - [#Lecture_1](#Lecture_1)
+  - [#Lecture_1]
   - [#Lecture_2](#Lecture_2)
   - [#Lecture_3](#Lecture_3)
   - [#Lecture_4](#Lecture_4)
@@ -207,22 +207,34 @@ There are 8 different data types.
 Variables:
 - not directly associated with any particular type
 - type can be re-assigned
-
+```
 let foo = 7;
 foo = "now I'm a string";
 foo = true;
-
+```
+	
 String type
+```	
 const str1 = "double quotes";
 const str2 = 'single quotes';
 const str3 = `With backtick we can paste a variable or value: ${str1}`;
+```	
 Quotes types:
+	
+```
+const str1 = "Hello";	
+const str2 = 'Single quotes are awesome too';
+const complexStr = `Whith backtick we can paste a variable or value: ${str1}`;	
+```	
+	
+```	
 double quotes (“ ”)
 single quotes (‘ ‘)
 backtick (` `) - helps us to build a “complex” string
+```	
 
 String Type: Backtick
-
+```
 const person = "John";
 
 // Insert a variable
@@ -233,19 +245,22 @@ alert(`Hello, ${person}!`); // Hello, John!
 
 // Insert and calculate an expression
 alert(`result: ${1 + 2}`); // result: 3
-
+```
 
 Number Type
-
+```
 const num1 = 123;
 const num2 = 25.435;
-Numbers should be between (253 − 1) and 253 − 1)
-9007199254740991 and -9007199254740991
 
+Numbers should be between (2**53 − 1) and 2**53 − 1)
+9007199254740991 and -9007199254740991
+```
 Number.isSafeInteger() method determines whether the provided value is a number that is a safe integer.
 
 Number type: corner cases
+	
 Infinity, -Infinity
+	
 alert( 1 / 0 ); // Infinity
 alert( Infinity ); // Infinity
 alert( "some string" / 2 ); // result will be NaN
@@ -254,24 +269,29 @@ What if we need a number bigger than
 9007199254740991
 
 BigInt Type
+```
 // character "n" in the end stands for BigInt
 const bigInt = 123456780123456789012345678901234567890n;
 const sameBigint = BigInt("123456780123456789012345678901234567890");
-
+```
 
 Boolean type
+```
 const isEverythingClear = true;
 const isBooleanHard = false;
 
 const isGreater = 3 > 1;
 
 alert(isGreater); // true (because 3 is bigger then 1)
-
+```
 
 ‘null’ type
+```
 const age = null;
+```
 
 ‘undefined’ type
+```
 let salary;
 
 alert(salary); // undefined
@@ -279,17 +299,18 @@ alert(salary); // undefined
 let age = 18;
 age = undefined;
 alert(age); // undefined
-
+```
 
 Object type
 
+```
 const person = {
     name: 'Joe',
     age: 20,
     isStudent: true,
     greeting: () => alert('Hello!')
 }
-
+```
 
 
 Symbol type
