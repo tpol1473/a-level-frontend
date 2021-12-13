@@ -1490,6 +1490,387 @@ With property descriptors we can:
 	
 	####Object.getOwnPropertyDescriptor()
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	Lecture_7
+	
+	Array
+	
+	
+```
+	const numbers = [1, 2, 5, 10];	
+	
+	console.log(numbers[1]); // 2
+	console.log(numbers[1]); // 2
+```
+	
+	Changing arrays
+	
+```
+	let cities = ['Minsk', 'Prague', 'London'];
+	
+	cities[0] = 'Kyiv';
+	cities[3] = 'Tallin';
+	
+	console.log(cities); //  ['Kyiv', 'Minsk', 'Prague', 'Tallin', 'London']
+	
+	
+```
+	
+```
+
+	const numbers = [1, 2, 5, 10];	
+	
+	numbers[10] = 'end';
+	
+	console.log(numbers[]); // 
+```
+	
+	
+```
+	function name(params) {
+	// ...
+	
+	return // ....
+	}
+	
+	
+	// or
+	
+	const name2 = () => {
+	// ...
+	
+	return // ....
+	}
+	
+	// or
+	
+	const name2 = (a, b) => a + b
+	
+```
+
+	
+	Arrays methods
+	
+	Convert ....
+	
+	toString(), join()
+	
+```
+	let arr = [1, 'John', true];
+	
+	console.log(arr.toString()); //  '1,John,true'
+	console.log(arr.join()); //  '1,John,true'
+	console.log(arr.join
+	console.log(arr.join
+```
+	
+```
+	let arr = [1, 2, 3, 4];
+	
+	console.log(arr.toString()); //  '1,2,3,4'
+	console.log(arr.join()); //  '1,2,3,4'
+	console.log(arr.join(' + ')); //  '1 + 2 + 3 + 4'
+	console.log(arr.join('.')); //  '1.2.3.4'
+	
+```
+	
+	unshift(), push()
+	
+```
+	let arr = [2, 3, 4];
+	
+	arr.unshift(1);
+	console.log(arr); //  '1,2,3,4'
+	
+	arr.push(5);
+	console.log(arr); //  '1,2,3,4,5'
+```
+	
+	shift(), pop()
+	
+```
+	let arr = [1, 2, 3];
+	console.log(arr); //  '1,2,3'
+	
+	let firstElement = arr.shift(); // 1
+	console.log(arr); //  '2,3'
+	
+	let endElement = arr.pop(); // 3
+	console.log(arr); //  '2'
+```
+	 concat()
+
+```
+	let arr1 = [1, 2];
+	let arr2 = [3, 4, 5];
+	
+	let arr = arr1.concat(arr2);
+	
+	console.log(arr1); //  '1,2'
+	console.log(arr2); //  '3,4,5'
+	console.log(arr3); //  '1,2,3,4,5'
+	
+```
+	
+```
+	let arr1 = [1, 2];
+	let arr2 = [3, 4, 5];
+	
+	let arr = arr1.concat(arr2);
+	
+	console.log(arr1); //  '1,2'
+	console.log(arr2); //  '3,4,5'
+	console.log(arr3); //  '1,2,3,4,5'
+	
+```
+
+	
+```
+	let arr1 = [1, 2, 3, 4];
+	let arr2 = [3, 4, 5];
+	
+	console.log([...arr1, ...arr2); //  '1,2,3,4,3,4,5'
+		
+```
+
+	
+```
+	let arr1 = [1, 2, 3, 4];
+	let arr2 = [3, 4, 5];
+	
+	console.log([...arr1, ...arr2); //  '1,2,3,4,3,4,5'
+		
+```
+	
+```
+	const obj = {a: 1, b: 2};
+	const obj2 = [b: 3, c: 4];
+	
+	console.log([...obj, ...obj2); //  {a: 1, b: 3, c: 4}
+		
+```	
+	
+	
+	slice()
+	
+	
+```
+	let arr1 = [1, 2, 3, 4, 5];
+	
+	let part1_of_arr1 = arr1.slice(3); // [4,5]
+	let part2_of_arr1 = arr1.slice(2, 4); // [3,4]
+	
+	let part3_of_arr1 = arr1.slice(-3); // [3,4,5]
+	
+	console.log(arr1); //  [1,2,3,4,5]
+	
+	let copy_of_arr1 = arr1.slice();  // [1,2,3,4,5]
+	
+	console.log(arr1); //  [1,2,3,4,5]
+```
+	
+	
+	splice()
+```
+	
+	
+```
+	
+	includes()
+	
+```
+	let arr = [];
+	
+	console.log(arr.indexOf(7)); //  []
+	
+```
+	
+	find()
+
+```
+	let arr = [];
+	
+	console.log(arr.indexOf(7)); //  []
+	
+```
+	
+	
+```
+	const arr1 = ['a', 'b', 'c'];	
+	const resultIndex0 = arr1.indexOf('b');  //  a
+	const resultIndex = arr1.find(fuction (element, index) {
+	  return element.charCodeAt() <= 97;  //return element === 'a';  
+	})   //  callback
+					   
+	const resultIndex1 = arr1.find((element, index) => index >= 2);    //  font  FiraCode
+					   
+	console.log(resultIndex0);  // 1
+	console.log(resultIndex);  // a
+	console.log(resultIndex1);  // c
+```
 
 	
 	
+	
+	
+	
+	
+	
+	
+	sort()
+	
+	
+``` 
+	let arr = [];
+	arr.sort();
+	
+	console.log(arr); // 
+```
+	
+	
+```
+	let arr = [3, 5, 19, 1, 7, 23, 14, 9];
+	
+	arr.sort((element1, element2) => {
+	if (element1 == element2) return 0;
+	else if (element1 > element2) return 1;
+	else if (element1 < element2) return -1;
+	});
+	
+	console.log(arr); //  [1, 3, 5, 7, 9, 14, 19, 23]
+```
+				     
+```
+	let arr = [3, 5, 19, 1, 7, 23, 14, 9];
+	
+	arr.sort((element1, element2) => element1 - element2);
+	console.log(arr); //  [1, 3, 5, 7, 9, 14, 19, 23]
+```
+
+	
+	forEach()
+	
+```
+	const arr = ['Joe', 'Anna', 'Bond'];
+	
+	function printf(element, index) {
+	console.log(`a: ${element}, b: ${index}`)
+	}
+	
+	arr.forEach(printf);
+```	
+	
+	
+```
+	const arr = ['Joe', 'Anna', 'Bond'];
+	
+	function printf(element, index) {
+	console.log(`a: ${element}, b: ${index}`)
+	}
+	
+	arr.forEach((element, index) => console.log(`element: ${element}, index: ${index}`);
+```	
+	
+	
+	map()
+	
+```
+	let arr = [3, 5, 19, 1, 7, 23];
+	
+	let result = arr.map((element, index) => element > 10;
+	console.log(result); //  
+```
+	
+```
+	const arr = ['Joe', 'Anna', 'Brad'];
+	
+	const result = arr.map((element, index) => ({name: element, id: Math.random()}));
+	}
+	
+	console.log(result); // 
+```		
+	
+	
+	filter()
+	
+```
+	let arr = [3, 5, 19, 1, 7, 23];
+	
+	let result = arr.filter((element, index) => element > 10;
+	console.log(result); //  [19, 23]
+```	
+	
+	
+	
+```
+	const arr = [
+	{
+	name: 'Joe',
+	id: 45622,
+	isStudent: true
+	}
+	{
+	name: 'Anna',
+	id: 4598452,
+	isStudent: true
+	}
+	{
+	name: 'Brad',
+	id: 423142,
+	isStudent: false,
+	age: 99
+	}
+	];
+	
+	const students = arr.filter(element => element.isStudent);
+	console.log(students); //  [19, 23]
+```	
+	
+	
+	reduce()
+	
+```
+	let arr = [3, 5, 19, 1, 7, 23];
+	
+	let sum = arr[0] + arr[1] + arr[2];
+	
+	const sum = 0;
+	
+	arr.forEach ((el) => (sum += el));
+	
+	console.log(sum); //  
+```		
+
+	
+```
+	let arr = [3, 5, 19, 1, 7, 23];
+	let sum = 0;
+	
+	arr.forEach ((el) => (sum += el));
+	
+	const sumWithReduce = arr.reduce((accum, element, index) => {
+	console.log('acc: ', acc);
+	console.log('element: ', element);
+	
+	return acc += element;
+	}, 0);
+	console.log(sumWithReduce); //  
+```	
+	
+```
+	let arr = [3, 5, 19, 1, 7, 23];
+	let sum = 0;
+	
+	arr.forEach ((el) => (sum += el));
+	
+	const sumWithReduce = arr.reduce((accum, element, index) => acc += element, 0);
+	console.log(sumWithReduce); //  
+```	
