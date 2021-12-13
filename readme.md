@@ -12,11 +12,13 @@ https://www.destroyallsoftware.com/talks/wat
 
 
 Content:
-  - [#Lecture_1]
+  - [#Lecture_1](#Lecture_1)
   - [#Lecture_2](#Lecture_2)
   - [#Lecture_3](#Lecture_3)
   - [#Lecture_4](#Lecture_4)
   - [#Lecture_5](#Lecture_5)
+  - [#Lecture_6](#Lecture_6)
+  - [#Lecture_7](#Lecture_7)
 
 
 Lecture_1
@@ -1353,3 +1355,141 @@ console.log(typeof str2); // object
     https://itsfoss.com/basic-terminal-tips-ubuntu/
   
   
+
+	Lecture_6
+	
+	##Objects
+	
+	###Object creation
+	
+```
+	{
+	key1: value1,
+	key2: value2,
+	key3: () => {},
+	...
+	}
+```
+	
+```
+const car {
+	name: Audi,
+	model: S8,
+	year: 2020,
+	isNew: true,
+	color: black,
+	getShotInformation: function () {
+	return `${this.mark} ${this.model} ${this.year}`;
+	}
+	
+	// or
+	
+	getShotInformation () {
+	return `${this.mark} ${this.model} ${this.year}`;
+	}
+	};
+	
+```
+
+	
+	###Object using
+	
+	objectVariable.propertyName
+
+	objectVariable.methodName()
+
+```
+	console.log(car.mark); // Audi
+	console.log(car.getShotInformation()); // Audi, S8, 2020
+
+```
+	
+	
+	objectVariable[‘propertyName’]
+
+```
+	let objectPropertyName = 'model';
+	console.log(car[objectPropertyName]); // S8
+
+```
+	
+		
+```
+	const obj = {
+	'property whith space': 'test'};
+	console.log(obj[property whith space]); // test
+```
+	
+```
+	console.log(car.model); // S8
+	car.model = 'A8';
+	console.log(car.model); // A8
+```
+	
+	###Delete properties
+	
+```
+	delete car.color;
+	delete car.getShotInformation;
+	
+	
+	// Теперь в переменной car хранится такой объект
+	
+	{
+	mark: 'Audi',
+	model: 'S8',
+	isNew: true,
+	year: 2020
+	}
+```
+	
+	###Copy objects
+	
+```
+	let obj1 = {
+	value1: 1,
+	value2: 2
+	};
+	
+	let obj2 = obj1;
+	
+	obj2.value3 = 3;
+	
+	console.log(obj1 === obj2); // true
+	console.log(obj1); // {value1: 1, value2: 3}
+	console.log(obj2); // {value1: 1, value2: 3}
+```
+
+
+```
+	let obj2 = object.Assign({}, obj1);
+	// or
+	let obj2 = {... obj1};
+```
+	
+	
+	###Object property descriptors
+	
+With property descriptors we can:
+	- protect property from updating/deleting
+	- change property value
+	- hide in loops cycles
+	- modify setter and getter of the value
+
+
+	####Descriptor structure
+	
+Объект дескриптора JS может содержать следующие свойства:
+	- configurable - логическое значение, указывает может ли быть изменено значение дескриптора и может ли свойство быть удалено из объекта (по умолчанию false);
+	- enumerable - логическое значение, если равно false, то свойство будет пропущено при перечислении всех свойства объекта (по умолчанию false);
+	- value - задает значение свойства (по умолчанию undefined);
+	- writable - логическое значение, указывает, может ли значение свойства быть изменено операцией присваивания (по умолчанию false);
+	- get - функция, возвращаемое значение которой будет возвращено в качестве значения свойства при его чтении;
+	- set - функция, которая вызывается в момент присваивания свойству нового значения и единственным параметром принимает присваиваемое значение.
+	
+	
+	####Object.getOwnPropertyDescriptor()
+	
+
+	
+	
