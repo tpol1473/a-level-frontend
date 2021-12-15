@@ -1356,11 +1356,11 @@ console.log(typeof str2); // object
   
   
 
-	Lecture_6
+	##Lecture_6
 	
-	##Objects
+	###Objects
 	
-	###Object creation
+	####Object creation
 	
 ```
 	{
