@@ -1442,6 +1442,38 @@ const car {
 	year: 2020
 	}
 ```
+
+```
+	const user = {
+	name: 'Joe',
+	age: 20,
+	  greeting() {
+	    console.log('Hello! My name is ' + this.name);
+	  }
+	};
+	
+	console.log(user);  //  {name: 'Joe', age: 20, greeting: f}
+	
+	delete user.age;
+	delete user.greeting;
+	
+	console.log(user); //  {name: 'Joe'}
+	
+	user.name = 'Alex';
+	
+	console.log(user); // { name: 'Alex'}
+	
+	console.log(user.title);  //  undefine
+	
+	user.title = 'lord';   // or  user['title'] = 'lord'; 
+		
+	console.log(user); // { name: 'Alex', title: 'lord'}
+	
+	user['very cool'] = true; 
+	
+	onsole.log(user); // { name: 'Alex', title: 'lord', very cool: true}
+```
+	
 	
 	###Copy objects
 	
@@ -1460,6 +1492,36 @@ const car {
 	console.log(obj2); // {value1: 1, value2: 3}
 ```
 
+```
+	const user = {
+	name: 'Joe',
+	age: 20,
+	  greeting() {
+	    console.log('Hello! My name is ' + this.name);
+	  }
+	};
+	
+	const user2 = user;
+	
+	console.log(user2);  // {name: 'Joe', age: 20, greeting: f}
+	
+	user2.name = 'Anna';
+	user2.sex = 'female';
+	
+	console.log(user);   // {name: 'Anna', age: 20, greeting: f, sex: female}
+	console.log(user2);  // {name: 'Anna', age: 20, greeting: f, sex: female}
+```
+	
+```
+	const a = 5;
+	let b = a;
+	
+	b++;
+	
+	console.log(a); //  5
+	console.log(b); //  6
+	
+```
 
 ```
 	let obj2 = object.Assign({}, obj1);
@@ -1488,8 +1550,485 @@ With property descriptors we can:
 	- set - функция, которая вызывается в момент присваивания свойству нового значения и единственным параметром принимает присваиваемое значение.
 	
 	
+	####Descriptors methods
+	
 	####Object.getOwnPropertyDescriptor()
 	
+```
+	const user = {};
+	user.name = 'Alex';
+	console.log(Object.getOwnPropertyDescriptor(user, 'name'));
+	
+	/*
+	'value': 'Alex',
+	'writable': true,
+	'anumerable': true,
+	'configurable': true,
+	*/
+	
+```
+	
+```
+	const user = {
+	name: 'Joe',
+	age: 20,
+	  greeting() {
+	    console.log('Hello! My name is ' + this.name);
+	  }
+	};
+	
+	user.name = 'Anna';
+	console.log(Object.getOwnPropertyDescriptor(user, 'name'));   //  {value: 'Anna', writable: true, enumerable: true, configurable: true}
+	
+```
+	
+	
+	####Object.defineProperty()
+
+```
+	const creditCard = {cvv: 1234};	
+	console.log(Object.getOwnPropertyDescriptor(creditCard, 'cvv'));   //  {value: '1234', writable: true, enumerable: true, configurable: true}
+	
+```
+	
+	
+```
+	const creditCard = {};
+	
+	Object.defineProperty(creditCard, 'cvv' {
+	value: 1234, 
+	configurable: false
+	});   
+	
+	creditCard.cvv = 5;
+	console.log(creditCard.cvv}; // 1234
+	
+	delete creditCard.cvv;
+	console.log(creditCard.cvv}; // 1234
+	
+	console.log(Object.getOwnPropertyDescriptor(creditCard, 'cvv'));   //  {value: '1234', writable: true, enumerable: true, configurable: false}
+	
+```
+
+	####Descriptor: configurable
+	
+	Configurable - logical value (true или false) and stands for possibility of changing or deleting property.
+	
+```
+	let obj = {};
+	Object.defineProperty(obj, 'city' {
+	  configurable: false,
+	  value: 'Kyiv'
+	});
+	
+	obj.city = 'Odessa';  //  ignore
+	
+	delete obj.city;  // ignore
+	
+	// uncaught TypeError: Cannot redefine property: city
+	Object.defineProperty(obj, 'city' {
+	  configurable: true
+	});
+		
+```
+	
+	
+	####Descriptor: enumerable
+	
+	Enumerable - hide property for counting methods, for example, in for...in loop
+	
+```
+	let obj = {
+	country: 'Ukraine'
+	};
+	
+	Object.defineProperty(obj, 'capital' {
+	  enumerable: false,
+	  value: 'Kyiv'
+	});
+	
+	for(let property in obj) {
+	  console.log(property);
+	}
+	
+	// result: 'country';
+	// 'capital' is ignored
+		
+```
+	
+```
+	const creditCard = {
+	name: 'Mastercard',
+	number: '12354669874565466'
+	};
+	
+	Object.defineProperty(creditCard, 'cvv' {
+	  value: 1234, 
+	  configurable: false,
+	  enumerable: false
+	});   
+	
+	for(let property in creditCard) {
+	  console.log(property);
+	}
+	
+	console.log(creditCard);  // name, number
+	console.log(creditCard.cvv);  // 1234
+	
+```	
+	
+	
+	####Descriptor: value
+	
+```
+	let obj = {};
+	
+	Object.defineProperty(obj, 'capital' {
+	  value: 'Kyiv'
+	});
+	
+	console.log(obj.capital);  //  'Kyiv'
+		
+```
+	
+	####Descriptor: get
+	
+	get - function which returns a value of the property. It’s possible to use this in the function.
+
+	
+```
+	let obj = {
+	country: 'France',
+	capital: 'Paris'
+	};
+	
+	Object.defineProperty(obj, 'description' {
+	  get: funktion () {
+	    return `${this.capital} is a capital of ${this.country}`;
+	  }
+	});
+	
+	console.log(obj.description);  //  Paris is a capital of France
+		
+```
+	
+```
+	const user = {
+	name: 'Joe'
+	};
+	
+	Object.defineProperty(user, 'title' {
+	  get () {
+	    return `Lord ${this.name}`;
+	  }
+	});
+	
+	console.log(obj.title);  //  Lord Joe
+	
+	user.name = 'Anna';
+	console.log(obj.title);  //  Lord Anna
+```	
+	
+	
+	
+	####Descriptor: set
+	
+	set - function, which is running when property value changes
+
+```
+	let capital = {
+	Austria: 'Vienna',
+	France: 'Paris',
+	Spain: 'Madrid'
+	};
+	
+	let obj = {countryDescription: null};
+	
+	Object.defineProperty(obj, 'country' {
+	  set: funktion (country) {
+	    this.countryDescription = `The capital of ${country} is ${capital[country] || 'Unknown'}`;
+	  }
+	});
+	
+	obj.country = 'Austria';
+	
+	console.log(obj.countryDescription);  //  'The capital of Austria is Vienna'
+```
+	
+	
+		
+```
+	const user = {
+	name: 'Joe'
+	};
+	
+	Object.defineProperty(user, 'hobby' {
+	  set(value) {
+	  this.description = `My hobby is ${value}`;
+	  }
+	});
+	
+	user.hobby = 'cycling';
+	
+	console.log(user.description);  //  My hobby is cycling
+	
+```	
+	
+```
+	const user = {
+	name: 'Joe',
+	description: `My hobby is ${this.hobby || 'running'}`
+	};
+	
+	user.hobby = 'cycling';
+	
+	console.log(user.description);  //  My hobby is running
+	
+```	
+	
+	
+	####Descriptors types
+	
+	Descriptors types:
+		- accessors (access descriptors)
+		- data descriptors
+
+	configurable and enumerable are common for data descriptors and accessors, value and writable belong to data descriptors, get and set - accessors. We can’t use mixed descriptor at thhe same time.
+	
+	
+	
+	###Object wrapper
+	
+```
+	// creating with literal
+	
+	let obj1 = {name: 'Tim'};	
+	
+	// creating with Object constructor  (wrapper)
+	
+	let obj2 = new Object({name: 'Tim'});
+	
+	console.log(obj1); //  {name: 'Tim'}
+	console.log(obj2); //  {name: 'Tim'}
+	
+	obj1 === obj2  // false  because diferent types
+	
+```
+	
+	###Object methods
+	
+	####Object.defineProperty()
+	
+```
+	let obj = {mark: 'BMW'};
+	
+	Object.defineProperty(obj, 'model' {
+	  configurable: true,
+	  enumerable: true,
+	  writable: true,
+	  value: 'X8'
+	});
+	
+	console.log(obj);  //  {mark: 'BMW', model: 'X8'}
+```	
+	
+```
+	let obj = {mark: 'BMW'};
+	
+	Object.defineProperties(obj, {
+	  mark: {
+	    configurable: true,
+	    enumerable: true,
+	    writable: true,
+	    value: 'BMW'
+	  },
+	  model' {
+	    configurable: true,
+	    enumerable: true,
+	    writable: true,
+	    value: 'X8'
+	  }
+	});
+	
+	console.log(obj);  //  {mark: 'BMW', model: 'X8'}
+```		
+	
+	
+	####Object.getOwnPropertyDescriptor()
+```
+	let obj = Object.defineProperty({}, 'mark', {
+	    configurable: true,
+	    enumerable: true,
+	    writable: true,
+	    value: 'BMW'
+	 });
+	
+	let objDescriptor = Object.getOwnPropertyDescriptor(obj, 'mark');
+	
+	console.log(objDescriptor);  //  {value: 'BMW', configurable: true, enumerable: true, writable: true}
+```		
+	
+```
+	console.log(Object.getOwnPropertyDescriptor(Math, 'PI'));  //  {value: 3.14159......, configurable: false, enumerable: false, writable: false}
+	
+	Math.PI = 500;
+	console.log(Math.PI);  //  3.14159......
+	
+```		
+	
+	
+	####Object.keys()
+	
+```
+	let obj = {mark: 'Mercedes', model: 'C180', year: 2021};
+	
+	Object.defineProperty(obj, 'mark', {enumerable: false});
+	
+	let objKeys = Object.keys(obj);
+	
+	console.log(objKeys);  // ['model', 'year']
+```	
+	
+	
+	####Object.values()
+	
+```
+	let obj = {mark: 'Mercedes', model: 'C180', year: 2021};
+	
+	Object.defineProperty(obj, 'mark', {enumerable: false});
+	
+	let objValue = Object.values(obj);
+	
+	console.log(objValue);  // ['C180l', '2021']
+```	
+	
+	####Object.assign()
+
+	
+```
+	let objTarget = {mark: 'Mercedes'};
+	let objSource1 = {model: 'C180'}
+	let objSource2 = {year: 2020};
+	let objSource3 = {year: 2021};
+	
+	let obj = Object.assign(objTarget, objSource1, objSource2, objSource3);
+	
+	console.log(obj);  // {mark: 'Mercedes', model: 'C180', year: 2021}
+```	
+	
+```
+	let car = {mark: 'Mercedes', model: 'C180', year: 2021};
+	let car1 = Object.assign({}, car);
+	
+	console.log(car1);  // {mark: 'Mercedes', model: 'C180', year: 2021}
+```	
+	
+	####Object.freeze()
+	
+```
+	let obj = Object.freeze({mark: 'Mercedes'});
+	
+	obj.mark = 'BMW';  //  ignored
+	
+	console.log(obj);  // {mark: 'Mercedes'}
+```	
+	
+	####Object.isFrozen()
+	
+```
+	let obj = Object.freeze({mark: 'Mercedes'});
+	
+	console.log(Object.isFrozen(obj));  // true
+```		
+	
+	####Object.preventExtensions()
+	
+```
+	let obj = Object.preventExtensions({mark: 'Mercedes'});
+	
+	obj.mark = 'BMW';
+	obj.model = 'X8';  // ignored
+	console.log(obj);  // {mark: 'BMW'}
+```		
+	
+	####Object.isExtensible()
+	
+```
+	let obj = Object.preventExtensions({mark: 'Mercedes'});
+	
+	console.log(Object.isExtensible(obj));  // false
+```		
+
+	
+	
+	##Object prototype
+	
+```
+        let person = {
+	firstName: '',
+	lastName: '',
+	  getFullName: function() {
+	    return `${this.firstName} ${this.lastName}`;
+	  }
+	};
+	
+	let driver = {
+	__proto__: person,
+	driveExperiance: 5
+	};
+	
+	driver.firstName = 'John';
+	driver.lastName = 'Malkovich';
+	
+	console.log(driver); // {driveExperiance: 5, firstName: 'John', lastName: 'Malkovich'}
+	console.log(driver.getFullName()); //  John Malkovich
+	
+```
+	
+	
+	####Object.setPrototypeOf()
+	
+	####Object.getPrototypeOf()
+	
+```
+        let person = {
+	firstName: '',
+	lastName: '',
+	  getFullName: function() {
+	    return `${this.firstName} ${this.lastName}`;
+	  }
+	};
+	
+	let driver = {
+	driveExperiance: 5
+	};
+	
+	Object.setPrototypeOf(driver, person)
+	
+	driver.firstName = 'John';
+	driver.lastName = 'Malkovich';
+	
+	console.log(driver.getFullName()); //  John Malkovich
+	
+	console.log(Object.getPrototypeOf(driver)); // {firstName: '', lastName: '', getFullName: f}
+	
+```	
+	
+	- objects are structures to gather related data
+	- to get property/method use .propertyName or [‘propertyName’]
+	- with descriptors we can describe properties behavior
+	- to copy objects use Object.assign() or spread operator (...)
+	- all objects inherit properties and methods from prototypes
+
+	Useful links
+	
+	https://doka.guide/js/objects-objects-everywhere/
+	
+	https://javascript.info/property-descriptors
+	
+	https://doka.guide/js/ref-type-vs-value-type/
+	
+	https://regex101.com/
 	
 	
 	
@@ -1498,10 +2037,9 @@ With property descriptors we can:
 	
 	
 	
+	##Lecture_7
 	
-	Lecture_7
-	
-	Array
+	###Array
 	
 	
 ```
@@ -1511,7 +2049,7 @@ With property descriptors we can:
 	console.log(numbers[1]); // 2
 ```
 	
-	Changing arrays
+	####Changing arrays
 	
 ```
 	let cities = ['Minsk', 'Prague', 'London'];
@@ -1557,7 +2095,7 @@ With property descriptors we can:
 ```
 
 	
-	Arrays methods
+	####Arrays methods
 	
 	Convert ....
 	
