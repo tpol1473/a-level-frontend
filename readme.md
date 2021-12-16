@@ -22,7 +22,7 @@ Content:
   - [#Lecture_8](#Lecture_8)
 
 
-Lecture_1
+#Lecture_1
 
 Created: 1995 (Netscape)
 Author:  Brendan Eich
@@ -167,7 +167,7 @@ const func = (num) => {
 
 
 
-Lecture_2
+#Lecture_2
 
 How does computer understand my code?
 Computers understand only machine code (0 and 1).
@@ -201,7 +201,7 @@ Kebab Case - very-long-name
 
 
 
-Lecture_3
+#Lecture_3
 
 Data Types: Basics
 JavaScript - a loosely typed and dynamic typed language.
@@ -358,7 +358,7 @@ With operator 'typeof' we can check a type.
 
   
   
-  Lecture_4
+  #Lecture_4
 
   Operators & Type Corection
 
@@ -949,7 +949,7 @@ void expression
   
   
   
-  Lecture_5
+  #Lecture_5
   
   Strings & Numbers
   
@@ -1357,7 +1357,7 @@ console.log(typeof str2); // object
   
   
 
-	##Lecture_6
+	#Lecture_6
 	
 	###Objects
 	
@@ -2038,7 +2038,7 @@ With property descriptors we can:
 	
 	
 	
-	##Lecture_7
+	#Lecture_7
 	
 	###Array
 	
@@ -2418,7 +2418,7 @@ With property descriptors we can:
 	
 	
 	
-	##Lecture_8
+	#Lecture_8
 	
 ```	
 	const numbers = [1, 2, 3, 4, 5];
