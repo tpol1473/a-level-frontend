@@ -2412,3 +2412,157 @@ With property descriptors we can:
 	const sumWithReduce = arr.reduce((accum, element, index) => acc += element, 0);
 	console.log(sumWithReduce); //  
 ```	
+
+	
+	
+	
+	
+	##Lecture_8
+	
+```	
+	const numbers = [1, 2, 3, 4, 5];
+/*
+  const newArr = numbers.map(function(element){
+    console.log('element:', element);
+    const result = element * 2;
+    return result;
+  });
+*/
+
+ /* const newArr = []; */ 
+/* let result; */
+
+/* const newArr = numbers.forEach(function(element){
+  
+  const result = element * 2;
+  newArr.push(result);
+});
+
+console.log('newArr:', newArr);
+*/
+```
+	
+```
+function multiplay(a, b){
+  return a * b;
+}
+
+multiplay(3, 15);
+console.log(multiplay(3, 15));
+```
+	
+```
+function funWith(a, b) {
+  console.log('a:', a);
+  console.log('b:', b);
+  
+  console.log('a * b =', a * b);
+}
+
+funWith(4, 8);
+```
+	
+```
+function multiplay1(a, b = 5){
+  return a * b;
+}
+console.log(multiplay1(8));
+multiplay1(3, 15);
+console.log(multiplay1(3, 15));
+```
+	
+```
+function sayMyName(name){
+  if (!name) return console.log('There is not name. Try agane.');
+  console.log('Hello, ' + name);
+}
+console.log(sayMyName('Tatiana'));
+sayMyName(3, 15);
+console.log(sayMyName(3, 15));
+```
+	
+```
+             // ... rest operator
+function sum( ...numbers) {
+  return numbers;
+}
+
+sum(1, 2, 3, 4);
+```
+	
+```
+function makeString( ...words) {
+  //const string = words.toString();
+  const string1 = words.join('');
+  
+  //return string;
+  return string1;
+}
+
+console.log(makeString(3, 15));
+console.log(makeString('Hello', ' ', 'my', ' ', 'dear', ' ', 'friend'));
+```
+
+```
+function sum(a, b, ...numbers) {
+  console.log(a);
+  console.log(b);
+  console.log(numbers);
+  
+  return numbers;
+}
+
+sum(1, 2, 3, 4);
+```
+
+```
+function makeString2() {
+  console.log(arguments);
+  const string1 = Array.from(arguments).join('');
+  
+  return string1;
+}
+
+console.log(makeString2('Hello', ' ', 'my', ' ', 'dear', ' ', 'friend'));
+```
+
+```
+function someFunc() {
+  return;
+}
+
+function someFunc2() {
+  const a = 'Hello';
+}
+
+console.log(someFunc);
+console.log(someFunc2);
+```
+
+```
+const test = () => {
+  console.log('test');
+}
+
+test();
+```
+
+```
+const test2 = function() {
+  console.log('test2');
+}
+
+test2();
+```
+
+
+```
+const numbers3 = [1, 2, 3, 4, 5];
+/*
+  const newArr = numbers.map(function(element){
+    console.log('element:', element);
+    const result = element * 2;
+    return result;
+  });
+*/
+```
