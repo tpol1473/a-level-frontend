@@ -2416,11 +2416,11 @@ With property descriptors we can:
 
 	
 	
-	
+```	
 	
 	#Lecture_8
 	
-```	
+```javascript	
 	const numbers = [1, 2, 3, 4, 5];
 /*
   const newArr = numbers.map(function(element){
