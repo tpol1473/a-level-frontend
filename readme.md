@@ -19,6 +19,7 @@ Content:
   - [#Lecture_5](#Lecture_5)
   - [#Lecture_6](#Lecture_6)
   - [#Lecture_7](#Lecture_7)
+  - [#Lecture_8](#Lecture_8)
 
 
 Lecture_1
