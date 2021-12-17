@@ -44,3 +44,32 @@ console.log(getMinValue3);
 Task 2   функция должна получать 2 аргумента (два обьекта) и возвращать обьект, содержащий свойства и методы предыдущих
 */
 
+function joinObjects(obj1, obj2) {
+  const result = {...obj1, ...obj2};
+  return result;
+};
+
+joinObjects(obj1, obj2);
+console.log(joinObjects);
+
+
+/*
+Task 2.1   Расширить существующий обьект дополнительными служебными методами toString() и valueOf(). Использовать метод Object.defineProperty() / Object.defineProperties()
+*/
+
+	const user = {
+	name: 'Joe',
+	age: 20
+	};
+	
+  Object.defineProperty(user, 'car', {value: 'Mercedes'});
+
+  let objValue = Object.values(user);
+
+  console.log(objValue);  // ['Joe', 20, 'Mercedes']
+	console.log(Object.Keys(user));  //  [name, age, car]
+	console.log(Object.Values(user));  //  [Joe, 20, 'Mercedes']
+	
+	user.toString();
+  user.valueOf();
+
