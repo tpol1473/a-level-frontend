@@ -54,22 +54,47 @@ console.log(joinObjects);
 
 
 /*
-Task 2.1   Расширить существующий обьект дополнительными служебными методами toString() и valueOf(). Использовать метод Object.defineProperty() / Object.defineProperties()
+Task 3   Расширить существующий обьект дополнительными служебными методами toString() и valueOf(). Использовать метод Object.defineProperty() / Object.defineProperties()
 */
 
 const user = {
-name: 'Joe',
-age: 20
+  name: 'Joe',
+  age: 18
 };
-	
-Object.defineProperty(user, 'car', {value: 'Mercedes'});
+user.car = true;
 
+Object.defineProperty(user, 'hobby', {
+	set(value) 
+	{this.description = `My hobby is ${value}`;
+	}
+});
+
+console.log(user.description);	
+
+user.hobby = 'cycling';
+
+console.log(user);
+
+Object.defineProperties(user, {
+	  mark: {
+	    configurable: true,
+	    enumerable: true,
+	    writable: true,
+	    value: 'BMW'
+	  },
+	  model: {
+	    configurable: true,
+	    enumerable: true,
+	    writable: true,
+	    value: 'X8'
+	  }
+	});
 let objValue = Object.values(user);
+let objKeys = Object.keys(user);
 
-console.log(objValue);  // ['Joe', 20, 'Mercedes']
-console.log(Object.Keys(user));  //  [name, age, car]
-console.log(Object.Values(user));  //  [Joe, 20, 'Mercedes']
-	
-user.toString();
-user.valueOf();
+console.log(objValue);  
+console.log(objKeys);  	
+console.log(user.toString());
+console.log(user.valueOf());
+
 
