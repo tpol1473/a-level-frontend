@@ -57,19 +57,19 @@ console.log(joinObjects);
 Task 2.1   Расширить существующий обьект дополнительными служебными методами toString() и valueOf(). Использовать метод Object.defineProperty() / Object.defineProperties()
 */
 
-	const user = {
-	name: 'Joe',
-	age: 20
-	};
+const user = {
+name: 'Joe',
+age: 20
+};
 	
-  Object.defineProperty(user, 'car', {value: 'Mercedes'});
+Object.defineProperty(user, 'car', {value: 'Mercedes'});
 
-  let objValue = Object.values(user);
+let objValue = Object.values(user);
 
-  console.log(objValue);  // ['Joe', 20, 'Mercedes']
-	console.log(Object.Keys(user));  //  [name, age, car]
-	console.log(Object.Values(user));  //  [Joe, 20, 'Mercedes']
+console.log(objValue);  // ['Joe', 20, 'Mercedes']
+console.log(Object.Keys(user));  //  [name, age, car]
+console.log(Object.Values(user));  //  [Joe, 20, 'Mercedes']
 	
-	user.toString();
-  user.valueOf();
+user.toString();
+user.valueOf();
 
