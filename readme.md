@@ -1874,8 +1874,7 @@ With property descriptors we can:
 	
 	Math.PI = 500;
 	console.log(Math.PI);  //  3.14159......
-	
-```		
+	```		
 	
 	
 	####Object.keys()
@@ -1901,7 +1900,20 @@ With property descriptors we can:
 	let objValue = Object.values(obj);
 	
 	console.log(objValue);  // ['C180l', '2021']
-```	
+```
+	
+	```
+	const user = {
+	name: 'Joe',
+	age: 20
+	};
+	
+	console.log(Object.Keys(user));  //  [name, age]
+	console.log(Object.Value(user));  //  [Joe, 20]
+	```
+	
+	
+	
 	
 	####Object.assign()
 
@@ -1915,7 +1927,99 @@ With property descriptors we can:
 	let obj = Object.assign(objTarget, objSource1, objSource2, objSource3);
 	
 	console.log(obj);  // {mark: 'Mercedes', model: 'C180', year: 2021}
-```	
+```
+	
+	
+```
+	const userInfo = {
+	name: 'Joe',
+	age: 20
+	};
+	
+	const userDescription = {
+	name: 'Anna',
+	description: 'I am a student',
+	hobby: 'gaming'
+	};
+	
+	const userData = {
+	sex: 'male'
+	};
+	
+	const user = Object.assign(userInfo, userDescription, userData);
+	
+	console.log(user);  // [name: 'Anna', age: 20, description: 'I am a student', hobby: 'gaming', sex: 'male']
+	```
+	
+	
+	```
+	const userInfo = {
+	name: 'Joe',
+	age: 20
+	};
+	
+	const userInfo2 = Object.assign({}, userInfo);
+	
+	userInfo2.name = 'Anna';
+	
+	console.log(userInfo2);  //  [name: 'Anna', age: 20]
+	console.log(userInfo);   //  [name: 'Joe', age: 20]
+	```
+	
+```
+	const userInfo = {
+	name: 'Joe',
+	age: 20
+	};
+	
+	const userDescription = {
+	name: 'Anna',
+	description: 'I am a student',
+	hobby: 'gaming'
+	};
+	
+	const userData = {
+	sex: 'male'
+	};
+	
+	const user = {...userInfo, ...userDescription, ...userData});
+	
+	console.log(user);  // [name: 'Anna', age: 20, description: 'I am a student', hobby: 'gaming', sex: 'male']
+	
+	const user2 = {isStudent: true, ...userInfo, ...userDescription, ...userData});
+	
+	console.log(user2);  // [isStudent: true, name: 'Anna', age: 20, description: 'I am a student', hobby: 'gaming', sex: 'male']
+	```
+	
+	
+```
+	const userInfo = {
+	name: 'Joe',
+	age: 20,
+	info: {
+	  data: 21,
+	  title: 'test'}
+	};
+	
+	const userDescription = {
+	name: 'Anna',
+	description: 'I am a student',
+	hobby: 'gaming'
+	};
+	
+	const userData = {
+	sex: 'male'
+	};
+	
+	const user = {...userInfo, ...userDescription, ...userData});
+	
+	console.log(user);  // [name: 'Anna', age: 20, info: , description: 'I am a student', hobby: 'gaming', sex: 'male']
+	
+	const user2 = {isStudent: true, ...userInfo, ...userDescription, ...userData});
+	
+	console.log(user2);  // [isStudent: true, name: 'Anna', age: 20, description: 'I am a student', hobby: 'gaming', sex: 'male']
+	```
+	
 	
 ```
 	let car = {mark: 'Mercedes', model: 'C180', year: 2021};
@@ -1923,6 +2027,8 @@ With property descriptors we can:
 	
 	console.log(car1);  // {mark: 'Mercedes', model: 'C180', year: 2021}
 ```	
+```	
+
 	
 	####Object.freeze()
 	
@@ -2014,6 +2120,24 @@ With property descriptors we can:
 	console.log(Object.getPrototypeOf(driver)); // {firstName: '', lastName: '', getFullName: f}
 	
 ```	
+	
+```
+        const user = {
+	  greeting() {
+	    console.log('hello');
+	  }
+	};
+	
+	const alex = {
+	name: 'Alex'
+	};
+	
+	Object.setPrototypeOf(alexr, user)
+	
+	alex.greeting();  //  hello
+		
+```	
+	
 	
 	- objects are structures to gather related data
 	- to get property/method use .propertyName or [‘propertyName’]
