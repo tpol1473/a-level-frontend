@@ -2692,6 +2692,20 @@ const numbers3 = [1, 2, 3, 4, 5];
 */
 ```
 
+Функциональное программирование - это стиль программирования, в котором решения представляют собой простые изолированные функции
+без каких-либо побочных эффектов за пределами области действия функции: INPUT -> PROCESS -> OUTPUT
+
+Функциональное программирование - это:
+
+	- Изолированные функции - нет зависимости от состояния программы, в которую входят глобальные переменные, которые могут изменяться
+
+	- Чистые функции - один и тот же ввод всегда дает один и тот же вывод
+
+	- Функции с ограниченными побочными эффектами - любые изменения или мутации состояния программы вне функции тщательно контролируются.
+
+Участники freeCodeCamp любят чай. В редакторе кода, то prepareTeaи getTea функции уже определены для вас. Вызовите getTea функцию, 
+чтобы получить 40 чашек чая для команды, и сохраните их в tea4TeamFCC переменной.
+	
 	
 ```
 	// Function that returns a string representing a cup of green tea
@@ -2717,7 +2731,32 @@ const tea4TeamFCC = getTea(40);
 // Only change code above this line
 ```
 				     
+
 				     
+####терминологи функционального программирования
+У команды FCC изменилось настроение, и теперь они хотят двух видов чая: зеленого и черного чая. Общий факт: перепады настроения клиентов - довольно распространенное явление.
+
+Имея эту информацию, нам нужно будет вернуться к getTeaфункции из последнего испытания, чтобы обрабатывать различные запросы на чай.
+Мы можем изменить, getTeaчтобы принять функцию в качестве параметра, чтобы иметь возможность изменять тип чая, который она готовит.
+Это делает его getTeaболее гибким и дает программисту больше контроля при изменении клиентских запросов.
+
+Но сначала давайте рассмотрим функциональную терминологию:
+
+Обратные вызовы - это функции, которые передаются или передаются другой функции для принятия решения о вызове этой функции.
+Возможно, вы видели, как они передаются в другие методы, например filter, в функции обратного вызова, сообщающей JavaScript критерии фильтрации массива.
+
+Функции, которые могут быть присвоены переменной, переданы в другую функцию или возвращены из другой функции,
+как и любое другое нормальное значение, называются функциями первого класса . В JavaScript все функции являются функциями первого класса.
+
+Функции, которые принимают функцию в качестве аргумента или возвращают функцию в качестве возвращаемого значения, называются функциями более высокого порядка .
+
+Когда функции передаются или возвращаются из другой функции, то те функции, которые были переданы или возвращены, могут называться лямбда .
+
+Приготовьте 27 чашек зеленого чая и 13 чашек черного чая и хранить их в tea4GreenTeamFCCи tea4BlackTeamFCCпеременных, соответственно.
+Обратите внимание, что getTeaфункция была изменена, поэтому теперь она принимает функцию в качестве первого аргумента.
+
+Примечание. Данные (количество чашек чая) указываются в качестве последнего аргумента. Мы обсудим это подробнее в последующих уроках.
+
 ```
 // Function that returns a string representing a cup of green tea
 const prepareGreenTea = () => 'greenTea';
@@ -2751,7 +2790,8 @@ console.log(
 );
 ```
 				     
-				     
+
+*********
 ```
 // Using slice, create newCar from myCar.
 let myHonda = { color: 'red', wheels: 4, engine: { cylinders: 4, size: 2.2 } }
@@ -2773,7 +2813,46 @@ console.log('The new color of my Honda is ' + myHonda.color)
 console.log('myCar[0].color = ' + myCar[0].color)
 console.log('newCar[0].color = ' + newCar[0].color)
 ```
+
 				     
+				     
+				     
+####опасности использования императивного кода
+Функциональное программирование - хорошая привычка. Это упрощает управление вашим кодом и избавляет вас от скрытых ошибок.
+Но прежде чем мы дойдем до этого, давайте рассмотрим императивный подход к программированию, чтобы выделить, где у вас могут быть проблемы.
+
+В английском (и во многих других языках) повелительное наклонение используется для команд.
+Точно так же императивный стиль программирования - это стиль, который дает компьютеру набор инструкций для выполнения задачи.
+
+Часто операторы изменяют состояние программы, например, обновляют глобальные переменные.
+Классический пример - написание for цикла, который дает точные указания для перебора индексов массива.
+
+Напротив, функциональное программирование - это форма декларативного программирования.
+Вы сообщаете компьютеру, что хотите сделать, вызывая метод или функцию.
+
+JavaScript предлагает множество предопределенных методов, которые обрабатывают общие задачи,
+поэтому вам не нужно писать, как компьютер должен их выполнять.
+Например, вместо использования for цикла, упомянутого выше, вы можете вызвать map метод, который обрабатывает детали итерации по массиву.
+Это помогает избежать семантических ошибок, таких как «Off By One Errors», описанные в разделе «Отладка».
+
+Рассмотрим сценарий: вы просматриваете веб-страницы в своем браузере и хотите отслеживать открытые вкладки.
+Попробуем смоделировать это с помощью простого объектно-ориентированного кода.
+
+Объект Window состоит из вкладок, и обычно у вас открыто несколько окон.
+Заголовки каждого открытого сайта в каждом объекте Window хранятся в массиве. 
+После работы в браузере (открытия новых вкладок, объединения окон и закрытия вкладок) вы хотите распечатать вкладки, которые все еще открыты.
+Закрытые вкладки удаляются из массива, а новые вкладки (для простоты) добавляются в его конец.
+
+Редактор кода показывает реализацию этой функции с функциями для tabOpen(), tabClose()и join().
+Массив tabs является частью объекта Window, в котором хранятся имена открытых страниц.
+
+Изучите код в редакторе. Он использует метод, который имеет побочные эффекты в программе, вызывая некорректное поведение.
+Окончательный список открытых вкладок, хранящийся в finalTabs.tabs, должен быть,
+['FB', 'Gitter', 'Reddit', 'Twitter', 'Medium', 'new tab', 'Netflix', 'YouTube', 'Vine', 'GMail', 'Work mail', 'Docs', 'freeCodeCamp', 'new tab']
+но список, созданный кодом, немного отличается.
+
+Измените Window.prototype.tabClose так, чтобы удалялась правильная вкладка.
+
 ```
 // tabs is an array of titles of each site open within the window
 const Window = function(tabs) {
@@ -2795,14 +2874,10 @@ Window.prototype.tabOpen = function(tab) {
 // When you close a tab
 Window.prototype.tabClose = function(index) {
 
-  // Only change code below this line
-
   const tabsBeforeIndex = this.tabs.slice(0, index); // Get the tabs before the tab
   const tabsAfterIndex = this.tabs.slice(index + 1); // Get the tabs after the tab
 
   this.tabs = tabsBeforeIndex.concat(tabsAfterIndex); // Join them together
-
-  // Only change code above this line
 
   return this;
  };
@@ -2819,7 +2894,29 @@ const finalTabs = socialWindow
   .join(workWindow.tabClose(1).tabOpen());
 console.log(finalTabs.tabs);
 ```
-				     
+
+
+
+####Избегайте мутаций и побочных эффектов с помощью функционального программирования
+Если вы еще не поняли, проблема в предыдущем испытании была связана с splice вызовом tabClose() функции.
+К сожалению, он splice изменяет исходный массив, для которого он вызван, поэтому второй вызов к нему использовал измененный массив и дал неожиданные результаты.
+
+Это небольшой пример гораздо большего шаблона - вы вызываете функцию для переменной, массива или объекта, и функция изменяет переменную или что-то в этом объекте.
+
+Один из основных принципов функционального программирования - ничего не менять.
+Изменения приводят к ошибкам.
+Легче предотвратить ошибки, зная, что ваши функции ничего не меняют, включая аргументы функции или любую глобальную переменную.
+
+В предыдущем примере не было сложных операций, но splice метод изменил исходный массив и привел к ошибке.
+
+Напомним, что в функциональном программировании изменение или изменение вещей называется мутацией,
+а результат - побочным эффектом.
+В идеале функция должна быть чистой функцией , то есть не вызывать никаких побочных эффектов.
+
+Давайте попробуем освоить эту дисциплину и не изменять никакие переменные или объекты в нашем коде.
+
+Введите код функции, incrementer чтобы она возвращала значение глобальной переменной, fixedValue увеличенное на единицу.
+
 ```
 // The global variable
 let fixedValue = 4;
@@ -2833,7 +2930,27 @@ console.log(fixedValue); //  4
 }
 ```
 				     
-				     
+
+####Передача аргументов, чтобы избежать внешней зависимости в функции
+Последний вызов был на шаг ближе к принципам функционального программирования, но чего-то еще не хватает.
+
+Мы не меняли значение глобальной переменной, но функция incrementerне будет работать без глобальной переменной fixedValue.
+
+Другой принцип функционального программирования - всегда явно объявлять свои зависимости.
+Это означает, что если функция зависит от присутствующей переменной или объекта,
+то передайте эту переменную или объект непосредственно в функцию в качестве аргумента.
+
+Из этого принципа можно сделать несколько хороших выводов.
+Функцию легче протестировать, вы точно знаете, какие данные она принимает, и она не будет зависеть от чего-либо еще в вашей программе.
+
+Это может придать вам больше уверенности при изменении, удалении или добавлении нового кода.
+Вы бы знали, что можно, а что нельзя изменить, и видели бы потенциальные ловушки.
+
+Наконец, функция всегда будет выдавать один и тот же результат для одного и того же набора входных данных, независимо от того, какая часть кода ее выполняет.
+
+Давайте обновим incrementer функцию, чтобы четко объявить ее зависимости.
+Напишите incrementer функцию так, чтобы она принимала аргумент, а затем возвращала результат после увеличения значения на единицу.
+
 ```
 // The global variable
 let fixedValue = 4;
@@ -2845,5 +2962,479 @@ console.log(fixedValue); //  4
   
 }
 ```
-				     
-				     
+
+
+
+
+####Рефакторинг глобальных переменных вне функций
+До сих пор мы видели два различных принципа функционального программирования:
+
+Не изменяйте переменную или объект - создавайте новые переменные и объекты и возвращайте их, если необходимо, из функции.
+Подсказка: использование чего-то вроде const newArr = arrVar, где arrVar массив, просто создаст ссылку на существующую переменную, а не копию.
+Таким образом, изменение значения в newArrизменит значение в arrVar.
+
+Объявление параметров функции - любое вычисление внутри функции зависит только от аргументов,
+переданных функции, а не от какого-либо глобального объекта или переменной.
+
+Добавление единицы к числу не очень увлекательно, но мы можем применить эти принципы при работе с массивами или более сложными объектами.
+
+Перепишите код, чтобы глобальный массив bookListне изменялся ни в одной из функций.
+add Функция должна добавить данное bookName в конце массива, переданного ему и возвращает новый массив (list).
+remove Функция должна удалить заданный bookName из массива, переданного ему.
+
+Примечание. Обе функции должны возвращать массив, и любые новые параметры должны быть добавлены перед bookName параметром.
+
+```
+// the global variable
+var bookList = ["The Hound of the Baskervilles", "On The Electrodynamics of Moving Bodies", "Philosophiæ Naturalis Principia Mathematica", "Disquisitiones Arithmeticae"];
+
+/* This function should add a book to the list and return the list */
+// New parameters should come before bookName
+
+function add(list, bookName) {
+  return [...list, bookName];
+}
+
+/* This function should remove a book from the list and return the list */
+// New parameters should come before the bookName one
+
+function remove(list, bookName) {
+  return list.filter(book => book !== bookName);
+}
+
+var newBookList = add(bookList, 'A Brief History of Time');
+var newerBookList = remove(bookList, 'On The Electrodynamics of Moving Bodies');
+var newestBookList = remove(add(bookList, 'A Brief History of Time'), 'On The Electrodynamics of Moving Bodies');
+
+console.log(bookList);
+```
+
+
+####Использование метода карты для извлечения данных из массива
+До сих пор мы научились использовать чистые функции, чтобы избежать побочных эффектов в программе.
+Кроме того, мы видели, что значение функции зависит только от ее входных аргументов.
+
+Это только начало. Как следует из названия, функциональное программирование сосредоточено вокруг теории функций.
+
+Было бы разумно передавать их в качестве аргументов другим функциям и возвращать функцию из другой функции.
+В JavaScript функции считаются объектами первого класса, что означает, что их можно использовать как любой другой объект.
+Они могут быть сохранены в переменных, сохранены в объекте или переданы как аргументы функции.
+
+Начнем с некоторых простых функций массива, которые являются методами прототипа объекта массива.
+В этом упражнении мы смотрим Array.prototype.map(), или, проще говоря map.
+
+map Метод перебирает каждый элемент массива и возвращает новый массив, содержащий результаты вызова функции обратного вызова для каждого элемента.
+Это делается без изменения исходного массива.
+
+Когда используется обратный вызов, ему передаются три аргумента. Первый аргумент - это текущий обрабатываемый элемент.
+Второй - это индекс этого элемента, а третий - это массив, для которого map был вызван метод.
+
+Ниже приведен пример использования mapметода users массива для возврата нового массива, содержащего только имена пользователей в качестве элементов.
+Для простоты в примере используется только первый аргумент обратного вызова.
+
+```
+const users = [
+  { name: 'John', age: 34 },
+  { name: 'Amy', age: 20 },
+  { name: 'camperCat', age: 10 }
+];
+
+const names = users.map(user => user.name);
+console.log(names);
+Консоль отобразит значение [ 'John', 'Amy', 'camperCat' ].
+```
+В watchList массиве хранятся объекты с информацией о нескольких фильмах.
+Используйте map на watchList назначить новый массив объектов с ratings переменной.
+Каждый фильм в новом массиве должен иметь только title ключ с названием фильма и rating ключ с рейтингом IMDB.
+Код в редакторе в настоящее время использует для этого for цикл, поэтому вам следует заменить функциональность цикла своим mapвыражением.
+
+```
+// The global variable
+const watchList = [
+  {
+    "Title": "Inception",
+    "Year": "2010",
+    "Rated": "PG-13",
+    "Released": "16 Jul 2010",
+    "Runtime": "148 min",
+    "Genre": "Action, Adventure, Crime",
+    "Director": "Christopher Nolan",
+    "Writer": "Christopher Nolan",
+    "Actors": "Leonardo DiCaprio, Joseph Gordon-Levitt, Elliot Page, Tom Hardy",
+    "Plot": "A thief, who steals corporate secrets through use of dream-sharing technology, is given the inverse task of planting an idea into the mind of a CEO.",
+    "Language": "English, Japanese, French",
+    "Country": "USA, UK",
+    "Awards": "Won 4 Oscars. Another 143 wins & 198 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+    "Metascore": "74",
+    "imdbRating": "8.8",
+    "imdbVotes": "1,446,708",
+    "imdbID": "tt1375666",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "Interstellar",
+    "Year": "2014",
+    "Rated": "PG-13",
+    "Released": "07 Nov 2014",
+    "Runtime": "169 min",
+    "Genre": "Adventure, Drama, Sci-Fi",
+    "Director": "Christopher Nolan",
+    "Writer": "Jonathan Nolan, Christopher Nolan",
+    "Actors": "Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow",
+    "Plot": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+    "Language": "English",
+    "Country": "USA, UK",
+    "Awards": "Won 1 Oscar. Another 39 wins & 132 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMjIxNTU4MzY4MF5BMl5BanBnXkFtZTgwMzM4ODI3MjE@._V1_SX300.jpg",
+    "Metascore": "74",
+    "imdbRating": "8.6",
+    "imdbVotes": "910,366",
+    "imdbID": "tt0816692",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "The Dark Knight",
+    "Year": "2008",
+    "Rated": "PG-13",
+    "Released": "18 Jul 2008",
+    "Runtime": "152 min",
+    "Genre": "Action, Adventure, Crime",
+    "Director": "Christopher Nolan",
+    "Writer": "Jonathan Nolan (screenplay), Christopher Nolan (screenplay), Christopher Nolan (story), David S. Goyer (story), Bob Kane (characters)",
+    "Actors": "Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine",
+    "Plot": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, the caped crusader must come to terms with one of the greatest psychological tests of his ability to fight injustice.",
+    "Language": "English, Mandarin",
+    "Country": "USA, UK",
+    "Awards": "Won 2 Oscars. Another 146 wins & 142 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
+    "Metascore": "82",
+    "imdbRating": "9.0",
+    "imdbVotes": "1,652,832",
+    "imdbID": "tt0468569",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "Batman Begins",
+    "Year": "2005",
+    "Rated": "PG-13",
+    "Released": "15 Jun 2005",
+    "Runtime": "140 min",
+    "Genre": "Action, Adventure",
+    "Director": "Christopher Nolan",
+    "Writer": "Bob Kane (characters), David S. Goyer (story), Christopher Nolan (screenplay), David S. Goyer (screenplay)",
+    "Actors": "Christian Bale, Michael Caine, Liam Neeson, Katie Holmes",
+    "Plot": "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from the corruption that Scarecrow and the League of Shadows have cast upon it.",
+    "Language": "English, Urdu, Mandarin",
+    "Country": "USA, UK",
+    "Awards": "Nominated for 1 Oscar. Another 15 wins & 66 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BNTM3OTc0MzM2OV5BMl5BanBnXkFtZTYwNzUwMTI3._V1_SX300.jpg",
+    "Metascore": "70",
+    "imdbRating": "8.3",
+    "imdbVotes": "972,584",
+    "imdbID": "tt0372784",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "Avatar",
+    "Year": "2009",
+    "Rated": "PG-13",
+    "Released": "18 Dec 2009",
+    "Runtime": "162 min",
+    "Genre": "Action, Adventure, Fantasy",
+    "Director": "James Cameron",
+    "Writer": "James Cameron",
+    "Actors": "Sam Worthington, Zoe Saldana, Sigourney Weaver, Stephen Lang",
+    "Plot": "A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.",
+    "Language": "English, Spanish",
+    "Country": "USA, UK",
+    "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_SX300.jpg",
+    "Metascore": "83",
+    "imdbRating": "7.9",
+    "imdbVotes": "876,575",
+    "imdbID": "tt0499549",
+    "Type": "movie",
+    "Response": "True"
+  }
+];
+
+const ratings = watchList.map(item => ({
+  title: item["Title"],
+  rating: item["imdbRating"]
+}));
+
+/*
+const ratings = watchList.map(({ Title: title, imdbRating: rating }) => ({title, rating}));
+*/
+	
+console.log(JSON.stringify(ratings));	
+	
+```
+
+####Реализовать карту на прототипе
+Как вы видели при применении Array.prototype.map() или просто map() ранее, map метод возвращает массив той же длины, что и тот, для которого он был вызван.
+Он также не изменяет исходный массив, если этого не делает его функция обратного вызова.
+
+Другими словами, map это чистая функция, и ее выход зависит исключительно от ее входов.
+Кроме того, он принимает в качестве аргумента другую функцию.
+
+Вы можете многое узнать об этом map методе, если реализуете его собственную версию.
+Рекомендуется использовать for петлю или Array.prototype.forEach().
+
+Напишите свой Array.prototype.myMap(), который должен вести себя точно так же Array.prototype.map().
+Не стоит использовать встроенный map метод. Array Экземпляр можно получить в myMap методе с использованием this.
+
+```
+// с использованием this
+
+const s = [23, 65, 98, 5];
+
+Array.prototype.myMap = function(callback) {
+  const newArray = [];
+  
+  for (let i = 0; i < this.length; i++) {
+    newArray.push(callback(this[i]));
+  }
+  
+  return newArray;
+};
+
+const new_s = s.myMap(function(item) {
+  return item * 2;
+});
+console.log(new_s);   //  [46, 130, 196, 10]
+```
+				  
+```
+// с использованием forEach()
+
+var s = [23, 65, 98, 5];
+
+Array.prototype.myMap = function(callback) {
+  var newArray = [];
+  
+  this.forEach(a => newArray.push(callback(a)));
+  
+  return newArray;
+};
+
+var new_s = s.myMap(function(item) {
+  return item * 2;
+});
+console.log(new_s); //  [46, 130, 196, 10]
+```
+
+
+####Используйте метод фильтрации для извлечения данных из массива
+Еще одна полезная функция массива - Array.prototype.filter() или просто filter().
+
+filter вызывает функцию для каждого элемента массива и возвращает новый массив, содержащий только элементы,
+для которых эта функция возвращает true.
+Другими словами, он фильтрует массив на основе переданной ему функции. Мол map, он делает это без необходимости изменять исходный массив.
+
+Функция обратного вызова принимает три аргумента. Первый аргумент - это текущий обрабатываемый элемент.
+Второй - это индекс этого элемента, а третий - это массив, для которого был вызван метод filter.
+
+См. Ниже пример использования filter метода в users массиве для возврата нового массива,
+содержащего только пользователей младше 30 лет.
+Для простоты в примере используется только первый аргумент обратного вызова.
+
+```
+const users = [
+  { name: 'John', age: 34 },
+  { name: 'Amy', age: 20 },
+  { name: 'camperCat', age: 10 }
+];
+
+const usersUnder30 = users.filter(user => user.age < 30);
+console.log(usersUnder30);
+```
+Консоль отобразит значение [ { name: 'Amy', age: 20 }, { name: 'camperCat', age: 10 } ].
+
+Переменная watchListсодержит массив объектов с информацией о нескольких фильмах.
+Используйте комбинацию filter и map на watchList назначить новый массив объектов с только title и rating ключами.
+Новый массив должен включать только те объекты, которые imdbRating больше или равны 8,0.
+Обратите внимание, что rating значения сохраняются в объекте как строки,
+и вам может потребоваться преобразовать их в числа для выполнения с ними математических операций.
+
+
+```
+// The global variable
+const watchList = [
+  {
+    "Title": "Inception",
+    "Year": "2010",
+    "Rated": "PG-13",
+    "Released": "16 Jul 2010",
+    "Runtime": "148 min",
+    "Genre": "Action, Adventure, Crime",
+    "Director": "Christopher Nolan",
+    "Writer": "Christopher Nolan",
+    "Actors": "Leonardo DiCaprio, Joseph Gordon-Levitt, Elliot Page, Tom Hardy",
+    "Plot": "A thief, who steals corporate secrets through use of dream-sharing technology, is given the inverse task of planting an idea into the mind of a CEO.",
+    "Language": "English, Japanese, French",
+    "Country": "USA, UK",
+    "Awards": "Won 4 Oscars. Another 143 wins & 198 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+    "Metascore": "74",
+    "imdbRating": "8.8",
+    "imdbVotes": "1,446,708",
+    "imdbID": "tt1375666",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "Interstellar",
+    "Year": "2014",
+    "Rated": "PG-13",
+    "Released": "07 Nov 2014",
+    "Runtime": "169 min",
+    "Genre": "Adventure, Drama, Sci-Fi",
+    "Director": "Christopher Nolan",
+    "Writer": "Jonathan Nolan, Christopher Nolan",
+    "Actors": "Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow",
+    "Plot": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+    "Language": "English",
+    "Country": "USA, UK",
+    "Awards": "Won 1 Oscar. Another 39 wins & 132 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMjIxNTU4MzY4MF5BMl5BanBnXkFtZTgwMzM4ODI3MjE@._V1_SX300.jpg",
+    "Metascore": "74",
+    "imdbRating": "8.6",
+    "imdbVotes": "910,366",
+    "imdbID": "tt0816692",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "The Dark Knight",
+    "Year": "2008",
+    "Rated": "PG-13",
+    "Released": "18 Jul 2008",
+    "Runtime": "152 min",
+    "Genre": "Action, Adventure, Crime",
+    "Director": "Christopher Nolan",
+    "Writer": "Jonathan Nolan (screenplay), Christopher Nolan (screenplay), Christopher Nolan (story), David S. Goyer (story), Bob Kane (characters)",
+    "Actors": "Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine",
+    "Plot": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, the caped crusader must come to terms with one of the greatest psychological tests of his ability to fight injustice.",
+    "Language": "English, Mandarin",
+    "Country": "USA, UK",
+    "Awards": "Won 2 Oscars. Another 146 wins & 142 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
+    "Metascore": "82",
+    "imdbRating": "9.0",
+    "imdbVotes": "1,652,832",
+    "imdbID": "tt0468569",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "Batman Begins",
+    "Year": "2005",
+    "Rated": "PG-13",
+    "Released": "15 Jun 2005",
+    "Runtime": "140 min",
+    "Genre": "Action, Adventure",
+    "Director": "Christopher Nolan",
+    "Writer": "Bob Kane (characters), David S. Goyer (story), Christopher Nolan (screenplay), David S. Goyer (screenplay)",
+    "Actors": "Christian Bale, Michael Caine, Liam Neeson, Katie Holmes",
+    "Plot": "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from the corruption that Scarecrow and the League of Shadows have cast upon it.",
+    "Language": "English, Urdu, Mandarin",
+    "Country": "USA, UK",
+    "Awards": "Nominated for 1 Oscar. Another 15 wins & 66 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BNTM3OTc0MzM2OV5BMl5BanBnXkFtZTYwNzUwMTI3._V1_SX300.jpg",
+    "Metascore": "70",
+    "imdbRating": "8.3",
+    "imdbVotes": "972,584",
+    "imdbID": "tt0372784",
+    "Type": "movie",
+    "Response": "True"
+  },
+  {
+    "Title": "Avatar",
+    "Year": "2009",
+    "Rated": "PG-13",
+    "Released": "18 Dec 2009",
+    "Runtime": "162 min",
+    "Genre": "Action, Adventure, Fantasy",
+    "Director": "James Cameron",
+    "Writer": "James Cameron",
+    "Actors": "Sam Worthington, Zoe Saldana, Sigourney Weaver, Stephen Lang",
+    "Plot": "A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.",
+    "Language": "English, Spanish",
+    "Country": "USA, UK",
+    "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_SX300.jpg",
+    "Metascore": "83",
+    "imdbRating": "7.9",
+    "imdbVotes": "876,575",
+    "imdbID": "tt0499549",
+    "Type": "movie",
+    "Response": "True"
+  }
+];
+
+const filteredList = watchList.map(item => {
+    return {
+      title: item.Title,
+      rating: item.imdbRating
+    };
+})
+  .filter(item => {
+    // return true it will keep the item
+    // return false it will reject the item
+    return parseFloat(item.rating) >= 8.0;
+  });
+
+/*
+var filteredList = watchList
+  .map(function(e) {
+    return { title: e["Title"], rating: e["imdbRating"] };
+  })
+  .filter(e => e.rating >= 8);
+
+console.log(filteredList);
+*/
+	
+/*
+var filteredList = watchList
+  .map(({ Title: title, imdbRating: rating }) => ({ title, rating }))
+  .filter(({ rating }) => rating > 8);
+*/
+
+console.log(filteredList);
+```
+
+####Реализуйте метод фильтрации на прототипе
+Вы можете многое узнать об этом filter методе, если реализуете его собственную версию.
+Рекомендуется использовать for петлю или Array.prototype.forEach().
+
+Напишите свой Array.prototype.myFilter(), который должен вести себя точно так же Array.prototype.filter().
+Не стоит использовать встроенный filter метод. Array Экземпляр можно получить в myFilter методе с использованием this.
+
+```
+// The global variable  With  Array.prototype.filter()
+const s = [23, 65, 98, 5];
+
+Array.prototype.myFilter = function(callback) {
+  
+  let newArray = [];
+  this.forEach(function(x) {
+    if (callback(x) == true) {
+      newArray.push(x);
+    }
+  });
+  
+  return newArray;
+};
+
+const new_s = s.myFilter(function(item) {
+  return item % 2 === 1;
+});
+
+console.log(new_s);  //  [23, 65, 5]
+```
