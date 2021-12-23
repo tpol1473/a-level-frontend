@@ -22,6 +22,8 @@ Content:
   - [#Lecture_8](#Lecture_8)
 
 
+
+
 #Lecture_1
 
 Created: 1995 (Netscape)
@@ -3438,3 +3440,31 @@ const new_s = s.myFilter(function(item) {
 
 console.log(new_s);  //  [23, 65, 5]
 ```
+
+	
+	#Lecture_9
+	
+	
+```
+const citiesAndCountries = {
+ Kyiv: 'Ukraine',
+ Washington: 'USA',
+ Odessa: 'Ukraine',
+ Munich: 'Germany',
+ Kharkiv: 'Ukraine',
+ 'New-York': 'USA',
+ Amsterdam: 'Netherlands',
+ Berlin: 'Germany',
+ Chicago: 'USA',
+ Lisbon: 'Portugal',
+ Lviv: 'Ukraine',
+ Hamburg: 'Germany'
+};
+```
+	
+	
+	
+	#Lecture_10
+	
+##Dom. Part 1
+	
