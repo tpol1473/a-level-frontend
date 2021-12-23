@@ -3446,6 +3446,94 @@ console.log(new_s);  //  [23, 65, 5]
 	
 	#Lecture_9
 	
+###Conditions
+####1.1  if-else
+```
+	if (condition){
+
+// some code
+
+}
+```
+####1.2  switch
+	
+#####switch
+	
+```
+switch (condition){
+
+case value1:
+...
+break;
+
+case value2:
+...
+break;
+
+default:
+...
+}
+```
+	
+#####1.3  ternary operator
+	
+######ternary operator
+	
+```
+condition ? value1 : value2;
+```
+	
+#####2. Loops
+```
+while - runs when condition is trusly
+do...while - the same as while, but runs at the first time, then checks the condition
+for - the most common way to loop
+for...of - interact throw elements of the array
+for...in - interact throw properties of the objects
+```
+	
+#####2.1  while
+#####2.2  do…while
+	
+#####2.3  for
+```
+for (initial data, condition, action after cycle) {
+
+// repeat some code
+
+}
+```
+	
+	
+#####2.4  for…of
+
+#####2.5  for…in
+	
+#####3. keyword `continue`
+	
+######continue
+with help of continue we can skip some actions in the current iteration.
+
+####3. keyword `break`
+	
+#####break
+	
+break stops (breaks) the loop.
+	
+conditions: if-else, switch, ternary operator (?)
+loops: while, do…while, for (for…of, for…in)
+keyword continue - skips the iteration
+keyword break - stops the loop
+
+	
+####Useful links
+	
+	- https://developer.mozilla.org/ru/docs/Learn/JavaScript/Building_blocks/conditionals
+	- https://doka.guide/js/if-else/
+	- https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide/Loops_and_iteration
+	- https://doka.guide/js/loop/
+	- https://doka.guide/js/for/
+	
 	
 ```
 const citiesAndCountries = {
