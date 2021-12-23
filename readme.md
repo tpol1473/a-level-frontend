@@ -3468,3 +3468,110 @@ const citiesAndCountries = {
 	
 ##Dom. Part 1
 	
+	
+###Add new element
+	
+```
+	let h1 = document.createElement
+	//console.log(document.getElementById('test-id'));
+// const button = document.getElementById('test-id');
+//debugger;
+//const button = document.querySelector('#test-id');
+//const button = document.getElementsByTagName('button');
+const buttons = document.getElementsByClassName('buttons');
+
+/*
+ 1. forEach
+ 2. get element by index (collection[1])
+ 3. converts to an array.from(collection)
+*/
+// console.log(button);
+// console.log(buttons[2]);
+/*
+const buttonsArr = Array.from(buttons);
+
+buttonsArr.forEach((element, index) => {
+    // console.log(buttons[index]);
+    console.log(element);
+})
+
+for (let i = 0; i < buttons.length; i++){
+    console.log(buttons[i]);
+}
+
+const myButton = document.getElementById('test-id');
+console.log(myButton.classList);
+
+myButton.classList.add('button--big');
+
+myButton.classList.remove('buttons--red');
+
+myButton.classList.toggle('buttons--red');
+
+//document.getElementById('toggle').addEventListener('click', () => {}
+
+console.log(myButton.classList.contains('buttons'));
+
+const myList = document.querySelector('ul#list');
+
+// myList.innerHTML = 'hello';
+
+myList.innerHTML = `
+            <li class="list-item">item</li>
+            <li class="list-item">item</li>
+            <li class="list-item">item</li>
+            <li class="list-item">item</li>
+            <li class="list-item">item</li>
+`;
+
+console.log(myList.innerHTML);
+
+
+myList.textContent = ` test string
+`;
+
+console.log(myList.textContent);
+
+*/
+/*
+const myList = document.getElementsByTagName('ul')[0];
+
+const listItem1 = document.createElement('li');
+listItem1.textContent = 'Item 1';
+listItem1.classList.add('item');
+*/
+
+const root = document.getElementById('root');
+
+const wrapper = document.createElement('div');
+// wrapper.id = 'test-id';
+
+wrapper.textContent = 'Hello world!';
+wrapper.setAttribute('id', 'test-id');
+wrapper.setAttribute('style', 'height: 200px;');
+wrapper.setAttribute('href', 'google.com');
+
+wrapper.classList.add('wrapper');
+wrapper.textContent = 'Some div el';
+wrapper.style.backgroundColor = '#ccc';
+
+const firstDiv = document.querySelector('nav div:first-child');
+
+firstDiv.style.fontSize = '30px';
+
+firstDiv.remove();
+// myList.appendChild(listItem1);
+// myList.after(wrapper);
+```
+	
+	
+	###Style
+
+```
+	
+```
+	
+	###Change attributes
+	
+	####Working with attributes
+	
