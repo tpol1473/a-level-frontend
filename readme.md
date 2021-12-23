@@ -20,6 +20,8 @@ Content:
   - [#Lecture_6](#Lecture_6)
   - [#Lecture_7](#Lecture_7)
   - [#Lecture_8](#Lecture_8)
+  - [#Lecture_8](#Lecture_9)
+  - [#Lecture_8](#Lecture_10)
 
 
 
