@@ -2347,8 +2347,69 @@ With property descriptors we can:
 	
 	splice()
 ```
+	array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+```
 	
-	
+```
+	Удаляет 0 элементов по индексу 2 и вставляет "drum"
+
+	var myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
+	var removed = myFish.splice(2, 0, 'drum');
+
+	// myFish равен ["angel", "clown", "drum", "mandarin", "sturgeon"]
+	// removed равен [], ничего не удалено
+```
+
+```
+	Удаляет 1 элемент по индексу 3
+
+	var myFish = ['angel', 'clown', 'drum', 'mandarin', 'sturgeon'];
+	var removed = myFish.splice(3, 1);
+
+	// removed равен ["mandarin"]
+	// myFish равен ["angel", "clown", "drum", "sturgeon"]
+```
+
+```
+Удаляет 1 элемент по индексу 2 и вставляет "trumpet"
+
+var myFish = ['angel', 'clown', 'drum', 'sturgeon'];
+var removed = myFish.splice(2, 1, 'trumpet');
+
+// myFish равен ["angel", "clown", "trumpet", "sturgeon"]
+// removed равен ["drum"]
+
+Удаляет 2 элемента начиная с индекса 0 и вставляет "parrot", "anemone" и "blue"
+
+var myFish = ['angel', 'clown', 'trumpet', 'sturgeon'];
+var removed = myFish.splice(0, 2, 'parrot', 'anemone', 'blue');
+
+// myFish равен ["parrot", "anemone", "blue", "trumpet", "sturgeon"]
+// removed равен ["angel", "clown"]
+
+Удаляет 2 элемента начиная с индекса 2
+
+var myFish = ['parrot', 'anemone', 'blue', 'trumpet', 'sturgeon'];
+var removed = myFish.splice(myFish.length - 3, 2);
+
+// myFish равен ["parrot", "anemone", "sturgeon"]
+// removed равен ["blue", "trumpet"]
+
+Удаляет 1 элемент по индексу -2
+
+var myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
+var removed = myFish.splice(-2, 1);
+
+// myFish равен ["angel", "clown", "sturgeon"]
+// removed равен s ["mandarin"]
+
+Удаляет все элементы после индекса 2 (включительно)
+
+var myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
+var removed = myFish.splice(2);
+
+// myFish равен ["angel", "clown"]
+// removed равен ["mandarin", "sturgeon"]
 ```
 	
 	includes()
@@ -2358,15 +2419,35 @@ With property descriptors we can:
 	
 	console.log(arr.indexOf(7)); //  []
 	
+	const array1 = [1, 2, 3];
+
+	console.log(array1.includes(2));  // expected output: true
+
+	const pets = ['cat', 'dog', 'bat'];
+
+	console.log(pets.includes('cat'));  // expected output: true
+
+	console.log(pets.includes('at'));  // expected output: false
 ```
 	
 	find()
 
 ```
-	let arr = [];
 	
-	console.log(arr.indexOf(7)); //  []
+	arr.find(callback[, thisArg]);
 	
+	function isPrime(element, index, array) {
+  	var start = 2;
+  	  while (start <= Math.sqrt(element)) {
+    	    if (element % start++ < 1) {
+      	    return false;
+    	    }
+  	  }
+  	return element > 1;
+	}
+
+	console.log([4, 6, 8, 12].find(isPrime)); // undefined, не найдено
+	console.log([4, 5, 8, 12].find(isPrime)); // 5	
 ```
 	
 	
@@ -2384,18 +2465,118 @@ With property descriptors we can:
 	console.log(resultIndex1);  // c
 ```
 
+	####Array.some()
+
+```
+	arr.some(callback(element[, index[, array]])[, thisArg]);
 	
+const array = [1, 2, 3, 4, 5];  // checks whether an element is even
+
+const even = (element) => element % 2 === 0;
+
+console.log(array.some(even));  // expected output: true
+```	
 	
+```
+function isBiggerThan10(element, index, array) {
+  return element > 10;
+}
+[2, 5, 8, 1, 4].some(isBiggerThan10);  // false
+[12, 5, 8, 1, 4].some(isBiggerThan10); // true
+```
 	
+	####Array.prototype.every()
 	
+```
+	arr.every(callback(currentValue[, index[, array]])[, thisArg])
+```
 	
+```
+function isBigEnough(element, index, array) {
+  return element >= 10;
+}
+[12, 5, 8, 130, 44].every(isBigEnough);   // false
+[12, 54, 18, 130, 44].every(isBigEnough); // true
+```
 	
+```
+[12, 5, 8, 130, 44].every(elem => elem >= 10);   // false
+[12, 54, 18, 130, 44].every(elem => elem >= 10); // true
+```
+	
+```
+if (!Array.prototype.every) {
+  Array.prototype.every = function(callbackfn, thisArg) {
+    'use strict';
+    var T, k;
+
+    if (this == null) {
+      throw new TypeError('this is null or not defined');
+    }
+
+    // 1. Положим O равным результату вызова ToObject над значением
+    //    this, переданным в качестве аргумента.
+    var O = Object(this);
+
+    // 2. Положим lenValue равным результату вызова внутреннего метода Get
+    //    объекта O с аргументом "length".
+    // 3. Положим len равным ToUint32(lenValue).
+    var len = O.length >>> 0;
+
+    // 4. Если IsCallable(callbackfn) равен false, выкинем исключение TypeError.
+    if (typeof callbackfn !== 'function') {
+      throw new TypeError();
+    }
+
+    // 5. Если thisArg присутствует, положим T равным thisArg; иначе положим T равным undefined.
+    if (arguments.length > 1) {
+      T = thisArg;
+    }
+
+    // 6. Положим k равным 0.
+    k = 0;
+
+    // 7. Пока k < len, будем повторять
+    while (k < len) {
+
+      var kValue;
+
+      // a. Положим Pk равным ToString(k).
+      //   Это неявное преобразование для левостороннего операнда в операторе in
+      // b. Положим kPresent равным результату вызова внутреннего метода
+      //    HasProperty объекта O с аргументом Pk.
+      //   Этот шаг может быть объединён с шагом c
+      // c. Если kPresent равен true, то
+      if (k in O) {
+
+        // i. Положим kValue равным результату вызова внутреннего метода Get
+        //    объекта O с аргументом Pk.
+        kValue = O[k];
+
+        // ii. Положим testResult равным результату вызова внутреннего метода Call
+        //     функции callbackfn со значением T в качестве this и списком аргументов,
+        //     содержащим kValue, k и O.
+        var testResult = callbackfn.call(T, kValue, k, O);
+
+        // iii. Если ToBoolean(testResult) равен false, вернём false.
+        if (!testResult) {
+          return false;
+        }
+      }
+      k++;
+    }
+    return true;
+  };
+}
+```
 	
 	
 	sort()
 	
 	
 ``` 
+	arr.sort([compareFunction]);
+	
 	let arr = [];
 	arr.sort();
 	
@@ -2422,6 +2603,18 @@ With property descriptors we can:
 	console.log(arr); //  [1, 3, 5, 7, 9, 14, 19, 23]
 ```
 
+```
+var fruit = ['арбузы', 'бананы', 'Вишня'];
+fruit.sort(); // ['Вишня', 'арбузы', 'бананы']
+
+var scores = [1, 2, 10, 21];
+scores.sort(); // [1, 10, 2, 21]
+
+var things = ['слово', 'Слово', '1 Слово', '2 Слова'];
+things.sort(); // ['1 Слово', '2 Слова', 'Слово', 'слово']
+// В Unicode, числа находятся перед буквами в верхнем регистре,
+// а те, в свою очередь, перед буквами в нижнем регистре.
+```
 	
 	forEach()
 	
@@ -2452,19 +2645,25 @@ With property descriptors we can:
 ```
 	let arr = [3, 5, 19, 1, 7, 23];
 	
-	let result = arr.map((element, index) => element > 10;
-	console.log(result); //  
+	let result = arr.map((element, index) => element + 10;
+	console.log(result); //  [13, 15, 29, 11, 17, 33]
 ```
 	
 ```
 	const arr = ['Joe', 'Anna', 'Brad'];
 	
 	const result = arr.map((element, index) => ({name: element, id: Math.random()}));
-	}
 	
 	console.log(result); // 
 ```		
+
+```
+	const arr = ['Joe', 'Anna', 'Brad'];
 	
+	const result = arr.map((element, index) => ({name: element, id: index}));
+	
+	console.log(result); // 
+```	
 	
 	filter()
 	
@@ -2542,11 +2741,21 @@ With property descriptors we can:
 	console.log(sumWithReduce); //  
 ```	
 
+- arrays store ordered data
+- each element in the array has its own index
+- arrays methods:
+	- add elements with unshift(), push()
+	- delete elements shift(), pop()
+	- unite arrays contact(), spread operator (...), slice()
+	- check arrays some(), every()
+	- sort arrays with sort()
+	- arrays have superpower: forEach(), map(), filter(), reduce()
+
 	
 	
 ```	
 	
-	#Lecture_8
+	[#Lecture_8](#Lecture_8)
 	
 ```javascript	
 	const numbers = [1, 2, 3, 4, 5];
