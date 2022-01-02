@@ -2758,6 +2758,20 @@ things.sort(); // ['1 Слово', '2 Слова', 'Слово', 'слово']
 	
 	[#Lecture_8](#Lecture_8)
 	
+	#Functions
+	
+	##Functions creating
+	
+```
+	function function_name(argument_1, argument_2, ..., argument_N){
+
+function’s body
+
+}
+```
+	
+	
+	
 ```javascript	
 	const numbers = [1, 2, 3, 4, 5];
 /*
@@ -3879,5 +3893,99 @@ firstDiv.remove();
 	
 	
 	[#Lecture_11](#Lecture_11)
+	
+	#Dom Part 2
+	
+	##1. Events types
+	
+Mouse
+	
+Keyboard
+	
+Control elements events
+	
+Browser
+	
+User events
+	
+
+	
+	##2. Events handing
+	
+	###addEventListener
+```	
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <main>
+        <button id="btn">Click me!</button>
+        <script>
+            const myButton = document.getElementById('btn');
+            //myButton.addEventListener('click', arg2);
+          myButton.addEventListener('click', (event) => {
+            //console.log('test');
+	    console.log(event.target.textContent);
+          });
+        </script>
+        <script src="./script_.js">
+        </script>
+
+    </main>
+</body>
+</html>	
+```	
+	######removeEventListener
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <main>
+      <button id="btn">Click me!</button>
+      <button id="btn-cancel">Cancel</button>
+        <script>
+          const myButton = document.getElementById('btn');
+            //myButton.addEventListener('click', arg2);
+          const cancelBtn = document.querySelector('#btn-cancel');
+          
+          const callback = (e) => {
+            alert('Test');
+          };
+          
+          myButton.addEventListener('click', callback);
+          cancelBtn.addEventListener('click', () => {
+            myButton.removeEventListener('click', callback);
+          });
+          
+        </script>
+        <script src="./script_.js">
+        </script>
+
+    </main>
+</body>
+</html>
+```
+	##3. 
+	
+	##4. Control events flow
+	
+	
+	
+	##5. 
+	
+	##6.
 	
 	
