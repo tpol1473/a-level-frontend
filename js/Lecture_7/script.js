@@ -3,12 +3,17 @@
  */
  const findVowelsCount = (inputString) => {
  
- if inputString.includes(a, e, i, o, u, y) i++;
- returne i;
- else
- returne string = 'Data not found';
- }
+ const arrFromString = inputString.split('');
  
+ const filteredArray = arrFromString.filter(function (letter) {
+	 return 'aeiouy'.includes(letter.toLowerCase());
+ });
+	 
+ const result = filteredArray.length;
+ return result;
+ };
+
+findVowelsCount('Tatiana');
  
  
  
