@@ -2836,12 +2836,24 @@ console.log(sayMyName(3, 15));
 	
 ```
              // ... rest operator
-function sum( ...numbers) {
+function sum(...numbers) {
   return numbers;
 }
 
 sum(1, 2, 3, 4);
 ```
+	
+	
+```
+             // ... rest operator
+function getMinNumber(...numbers) {
+return Math.min(...numbers);
+}
+
+console.log(getMinNumber(1, 2, 3, 4));  //  1
+console.log(getMinNumber(1, 2, -3, 4, 5));  //  -3
+```
+	
 	
 ```
 function makeString( ...words) {
@@ -3672,13 +3684,77 @@ console.log(new_s);  //  [23, 65, 5]
 	
 ###Conditions
 ####1.1  if-else
+
 ```
-	if (condition){
+if (true){
+console.log('test');
+}
+	
+```
 
-// some code
-
+```
+if (true) console.log('test');
+	
+```
+	
+```
+const number = 3;
+if (number >= 4) {
+console.log('good');
+} else {
+console.log('bad');
 }
 ```
+
+	
+```
+const test1 = 3;
+const test2 = 5;
+if (test1 < test2) {
+console.log('test1 < test2');
+} else {
+console.log('test1 >= test2');
+}
+```
+
+```
+const test1 = 3;
+const test2 = 5;
+		  
+const isLogToConsole = false;
+
+if (test1 < test2 && isLogToConsole ## 10) {
+console.log('test1 < test2');
+} else {
+console.log('test1 >= test2');
+}
+```
+
+```
+const test1 = 3;
+const test2 = 5;
+if (test1 < test2) {
+  console.log('test1 < test2');
+} else if (test1 > test2){
+console.log('test1 > test2');
+} else {
+console.log('test1 == test2');
+}
+```
+
+```
+const test1 = 3;
+const test2 = 5;
+if (test1 < test2) {
+console.log('test1 < test2');
+} else { if (test1 > test2){
+console.log('test1 > test2');
+} else {
+console.log('test1 == test2'); }
+}
+```	
+
+	
 ####1.2  switch
 	
 #####switch
@@ -3697,7 +3773,39 @@ break;
 default:
 ...
 }
+
 ```
+
+	
+```
+const number = 4;
+	
+switch (number) {
+  case 5:
+     console.log('Exellent');
+     break;
+
+  case 4:
+     console.log('Good');
+     break;
+
+  case 3:
+     console.log('Normal');
+     break;
+
+  case 2:
+     console.log('bad');
+     break;
+
+  case 1:
+     console.log('Very bad');
+     break;
+  
+  default:
+     alert('Data not found');
+}
+```
+	
 	
 #####1.3  ternary operator
 	
@@ -3706,6 +3814,39 @@ default:
 ```
 condition ? value1 : value2;
 ```
+	
+```
+let a = -3;
+let b;
+if (a > 0) {
+  b = 10;
+} else { 
+  b = 1;
+} 
+alert (b);
+```
+
+```
+let a = -3;
+let b = (a > 0) ? 10 : 1;
+
+alert (b);
+```
+
+```
+const isOnLine = true;
+isOnLine ?  console.log('Hello') : console.log('User is offline');
+
+```
+
+```
+const isOnLine = true;
+const userStatus = isOnLine ?  'Hello' : 'User is offline';
+console.log(userStatus);
+```
+
+	
+	
 	
 #####2. Loops
 ```
@@ -3717,9 +3858,37 @@ for...in - interact throw properties of the objects
 ```
 	
 #####2.1  while
+	
+```
+while (condition){
+
+// repeat some code
+
+}
+```
+	
+```
+let count = 5;
+while (count) {
+   console.log('count: ', count);   //  5 4 3 2 1
+   count--;
+} 
+```
+	
+	
 #####2.2  do…while
 	
+```
+let count = 5;
+
+do {
+   console.log(count--);
+} while (count > 10);
+```
+	
+	
 #####2.3  for
+
 ```
 for (initial data, condition, action after cycle) {
 
@@ -3727,13 +3896,136 @@ for (initial data, condition, action after cycle) {
 
 }
 ```
+
+```
+let arr = [1, 2, 3, 4, 5, 6];
+
+for (let i = 0; i < arr.length; i++) {
+   if ((i + 1) % 2 == 0) {
+	console.log(arr[i]);
+   }
+}
+			       
+//  2 4 6
+```
 	
+```
+let arr = [1, 2, 3, 4, 5, 6];
+
+for (let i = arr.length; i >= 0; i--) {
+   if ((i + 1) % 2 == 0) {
+	console.log(arr[i - 1]);
+   }
+}
+			       
+//  6 4 2
+```
+			       
+```
+let arr = [1, 2, 3, 4, 5, 6];
+
+for (let i = 0; i < arr.length; i++) {
+   console.log(arr[i]);
+}
+			       
+arr.forEach((el) => console.log(el));
+```
 	
+```
+let arr = [1, 2, 3, 4, 5, 6];
+let b = 0;
+	
+for (let i = 0, len = arr.length, c = 100; i < len && true; i++, b++) {   // b += i
+   console.log(arr[i]);
+}
+
+```
+
 #####2.4  for…of
+
+```
+for (element of array) {
+
+// repeat some code
+
+}
+```
+						  
+```
+let arr = [1, 2, 3, 4, 5, 6];
+	
+for (let item of arr) {  
+   console.log(item);
+}
+
+```
+
+```
+let arr = [1, 2, 3, 4, 5, 6];
+let b = 0;
+	
+for (let el of arr) {  
+   console.log(el);
+}
+
+```
+	
+	
 
 #####2.5  for…in
 	
-#####3. keyword `continue`
+```
+for (property in object) {
+
+// repeat some code
+
+}
+```
+						  
+```
+const months = {
+  1: 'January',
+  2: 'Fab',
+  3: 'Mar',
+  4: 'Apr',
+  5: 'May',
+  6: 'Jun',
+  7: 'Jul',
+  8: 'Aug',
+  9: 'Sep',
+  10: 'Oct',
+  11: 'Nov',
+  12: 'Dec'
+};
+for (let month in months) {
+  console.log('Month name: ' + months[month]);
+}
+					  
+```						  
+
+```
+const obj = {
+  name: 'Slav',
+  isStudent: true
+};						  
+
+const property = 'name';
+obj['name'] === obj.name
+```
+
+
+####3. keyword `continue`
+						  
+
+```
+let arr = [1, 2, 3, 4, 5, 6];
+	
+for (let item of arr) {  
+   if (item === 0) continue;
+   console.log(item / 2);
+}
+```
+
 	
 ######continue
 with help of continue we can skip some actions in the current iteration.
@@ -3743,11 +4035,22 @@ with help of continue we can skip some actions in the current iteration.
 #####break
 	
 break stops (breaks) the loop.
+						  
+```
+let arr = [1, 2, 3, 4, 5, 6];
+
+for (let i = 0; i < arr.length; i++) {
+   if (i == 3) break;
+   console.log(arr[i]);
+}
+			       
+//  1, 2, 3
+```
 	
-conditions: if-else, switch, ternary operator (?)
-loops: while, do…while, for (for…of, for…in)
-keyword continue - skips the iteration
-keyword break - stops the loop
+	- conditions: if-else, switch, ternary operator (?)
+	- loops: while, do…while, for (for…of, for…in)
+	- keyword continue - skips the iteration
+	- keyword break - stops the loop
 
 	
 ####Useful links
