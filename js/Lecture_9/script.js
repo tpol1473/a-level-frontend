@@ -18,11 +18,6 @@ const namesOfDays = {
 let lang = 'en';
 */
 const getNameOfDay = (day, lang) => {
-  const namesOfDays = {
-    ru: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
-    en: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-  };
-
   // if ((lang = 'en')) {
   //   switch (day) {
   //     case 1:
@@ -79,10 +74,15 @@ const getNameOfDay = (day, lang) => {
   //   }
   // }
 
+  const namesOfDays = {
+    ru: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+    en: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+  };
+
   // то, как реализовано тоже имеет право на жизнь, но я думаю, что тьі заметила, что тебе пришлось писать
   // довольно много  однотипного кода - а когда подходит такое чувство, то єто не хорошо.
   //
-  // 1) что, если попробовать получать локализацию (ru/en) по свойству обьекта:
+  // 1) что, если попробовать получать локализацию (ru/en) по свойству обьекта с обьекта 'namesOfDays':
   // const person = {
   //   name: "Anna"
   // }
