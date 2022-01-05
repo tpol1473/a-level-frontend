@@ -3682,7 +3682,8 @@ console.log(new_s);  //  [23, 65, 5]
 ```
 
 	
-	# Lecture_9
+
+# Lecture_9
 	
 ### Conditions
 #### 1.1  if-else
