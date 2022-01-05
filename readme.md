@@ -2755,7 +2755,7 @@ things.sort(); // ['1 Слово', '2 Слова', 'Слово', 'слово']
 
 	
 	
-```	
+	
 	
 	
 # Lecture_8
@@ -2765,7 +2765,7 @@ things.sort(); // ['1 Слово', '2 Слова', 'Слово', 'слово']
 ## Functions creating
 	
 ```
-	function function_name(argument_1, argument_2, ..., argument_N){
+function function_name(argument_1, argument_2, ..., argument_N){
 
 function’s body
 
