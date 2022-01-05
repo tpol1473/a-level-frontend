@@ -4287,8 +4287,415 @@ User events
 ## 3. 
 	
 ## 4. Control events flow
+
+код DOM, необходимый для выбора первого элемента с классом:card
+
+```
+const nanodegreeCard = document.querySelector('.card');
+```
+	
+Для облегчения доступа сохраним первый элемент в переменной:
+
+```
+const nanodegreeCard = document.querySelector('.card');
+```
+Теперь, когда мы сохранили первый элемент карты в nanodegreeCardпеременной, 
+мы можем использовать его nanodegreeCardдля ссылки на этот элемент вместо того,
+чтобы использовать document.querySelector('.card') для выбора элемента каждый раз, когда нам нужен доступ к нему.
+
+	
+Установить текстовое содержимое элемента легко, просто установите его так же, как и любое другое свойство:
+
+```
+nanodegreeCard.textContent = "I will be the updated text for the nanodegreeCard element!";
+```
+	
+```
+Как вы уже обнаружили, .createElement()метод - это метод documentобъекта:
+
+// creates and returns a <span> element
+document.createElement('span');
+
+// creates and returns an <h3> element
+document.createElement('h3');
+```
+	
+Теперь, чтобы использовать .appendChild() метод, его нужно вызвать на другом элементе , а не на document объекте!
+
+```
+// create a brand new <span> element
+const newSpan = document.createElement('span');
+
+// select the first (main) heading of the page
+const mainHeading = document.querySelector('h1');
+
+// add the <span> element as the last child element of the main heading
+mainHeading.appendChild(newSpan);
+```
+	
+Создание текстовых узлов
+Так же, как вы создавали новые элементы с помощью .createElement() метода,
+вы также можете создавать новые текстовые узлы с помощью .createTextNode() метода.
+Взгляните на следующий код, который:
+
+создает элемент абзаца
+создает текстовый узел
+добавляет текстовый узел к абзацу
+добавляет абзац к тегу
+```
+const myPara = document.createElement('p');
+const textOfParagraph = document.createTextNode('I am the text for the paragraph!');
+
+myPara.appendChild(textOfParagraph);
+document.body.appendChild(myPara);
+```
+	
+Однако, поскольку вы уже знаете об этом .textContent свойстве, приведенный ниже код даст точно такой же результат:
+
+```
+const myPara = document.createElement('p');
+
+myPara.textContent = 'I am the text for the paragraph!';
+document.body.appendChild(myPara);	
+```
 	
 	
+```	
+<h3 class="text-center italic mb-half">"I hope the Udacity experience can be as transformative and revealing for others as it has been for me."</h3>
+	
+const mainHeading = document.querySelector('.blue light mb-half');
+const otherHeading = document.querySelector('.text-center italic mb-half');
+const excitedText = document.createElement('span');
+
+excitedText.textContent = '!!!';
+mainHeading.appendChild(excitedText);
+otherHeading.appendChild(excitedText);
+	
+<h3 class="blue light mb-half">Imagine your future!</h3>
+```
+
+По определению, .appendChild() метод добавит элемент как последний дочерний элемент родительского элемента.
+Невозможно поставить его первым ребенком или где-то еще ... это должен быть последний ребенок.
+Было бы неплохо, если бы мы могли добавить дочерний элемент с некоторой гибкостью?
+
+Введите .insertAdjacentHTML() метод! .insertAdjacentHTML() Метод должен быть вызван с двумя аргументами:
+
+расположение HTML
+текст HTML, который будет вставлен
+Первый аргумент этого метода позволит нам вставить новый HTML в одно из четырех разных мест.
+
+beforebegin - вставляет HTML-текст как предыдущий брат
+afterbegin - вставляет HTML-текст как первый дочерний элемент
+beforeend - вставляет HTML-текст как последний дочерний элемент
+afterend - вставляет HTML-текст как следующего брата
+Лучше всего работает наглядный пример, и в документации MDN есть фантастический пример, который я немного изменю:
+```
+<!-- beforebegin -->
+<p>
+    <!-- afterbegin -->
+    Existing text/HTML content
+    <!-- beforeend -->
+</p>
+<!-- afterend -->
+```
+	
+Вот как бы мы позвонили .insertAdjacentHTML():
+
+```
+const mainHeading = document.querySelector('#main-heading');
+const htmlTextToAdd = '<h2>Skydiving is fun!</h2>';
+
+mainHeading.insertAdjacentHTML('afterend', htmlTextToAdd);
+```
+
+это должен быть текст, а не HTML. Если вы передадите HTML, тогда этот HTML будет отображаться. Есть исправление:
+Второй аргумент текст из insertAdjacentHTML() метода анализирует заданный текст в виде HTML - и вставляют результирующие узлы в дерево DOM в заданном положении.
+	
+#### В этом разделе мы узнали, как создавать новые элементы DOM и добавлять их на страницу. Мы рассмотрели следующие методы:
+
+	.createElement() создавать новые элементы
+	.appendChild() чтобы добавить дочерний элемент к родительскому элементу в качестве его последнего дочернего элемента
+	.createTextNode() создать текстовый узел
+	.insertAdjacentHTML() разместить HTML-текст в любом месте вокруг элемента
+Обратите внимание на следующие важные моменты:
+
+	если элемент уже существует в DOM и этот элемент передан .appendChild(), .appendChild() метод переместит его, а не дублирует
+	.textContentсвойство элемента используется чаще, чем создание текстового узла с помощью .createTextNode() метода
+	в .insertAdjacentHTML() второй аргумент метода должен быть текст, вы не можете передать элемент	
+	
+
+### Remove
+	
+В этом быстром разделе вы узнаете, как удалить контент со страницы. В частности, мы рассмотрим эти новые методы:
+
+	.removeChild()
+	.remove()
+В процессе вы также узнаете об этих двух свойствах:
+
+	.firstElementChild
+	.parentElement
+
+Удаление дочернего элемента
+Мы можем использовать этот .removeChild() метод, чтобы ... подождать ... удалить дочерний элемент.
+По сути, это полная противоположность .appendChild() метода.
+Так же, как и для .appendChild() метода, для .removeChild() метода требуются:
+
+	родительский элемент
+	дочерний элемент, который будет удален
+```
+<parent-element>.removeChild(<child-to-remove>);
+```
+	
+##### Недостаток (и обходной путь!) .removeChild() Метода
+	
+Как и у .appendChild() метода, у него есть (несколько незначительный) недостаток .removeChild().
+Оба метода:
+	требуется доступ к родительскому элементу для работы
+Однако на самом деле нам не нужно иметь родительский элемент, потому что есть обходной путь!
+Подобно тому, как .firstElementChild свойство может быть вызвано в родительском элементе для доступа к его первому элементу,
+каждый элемент также имеет parentElement свойство, которое ссылается на его родительский элемент!
+Итак, если у нас есть доступ к дочернему элементу, который мы собираемся добавить или удалить,
+вы можете использовать parentElement свойство, чтобы «переместить фокус» на родительский элемент.
+Затем мы можем вызвать .removeChild() (или .appendChild()) этот родительский элемент, на который есть ссылка.
+
+Давайте посмотрим на пример:
+```
+const mainHeading = document.querySelector('h1');
+
+mainHeading.parentElement.removeChild(mainHeading);
+```
+	
+Давайте пройдемся по этому коду.
+
+```
+const mainHeading = document.querySelector('h1');
+```
+	
+Предыдущий код выберет первый <h1>на странице и сохранит его в mainHeading переменной.
+Теперь к следующей строке:
+
+```
+mainHeading.parentElement.removeChild(mainHeading);
+```
+
+Это начинается с mainHeading переменной. Он вызывает .parentElement, поэтому фокус следующего кода направлен на родительский элемент.
+Затем .removeChild() вызывается родительский элемент. Наконец, mainHeading сам передается как элемент, который нужно удалить из своего родителя.
+
+Таким образом, элемент использует себя, чтобы удалить себя из своего родителя. Довольно круто, да?
+
+Удаление дочернего элемента (часть 2!)
+Мы прошли все эти шаги, выбрав элемент, используя методы обхода DOM, такие как .parentElementи .firstElementChild,
+чтобы мы могли удалить дочерний элемент. Я показал вам этот способ, чтобы вы могли получить некоторое представление и попрактиковаться в перемещении в DOM.
+
+Теперь вы можете быть рады (или разочарованы! Ха-ха), узнав, что есть более простой способ сделать все это!
+Мы можем удалить дочерний элемент напрямую с помощью .remove() метода:
+
+```
+const mainHeading = document.querySelector('h1');
+
+mainHeading.remove();
+```
+	
+В этом коротком разделе мы узнали два способа удалить элемент со страницы. Вы узнали о:
+
+	.removeChild()
+	.remove()
+
+Разница в том, что with .removeChild() должен быть вызван для родительского элемента удаляемого элемента и
+должен быть передан дочернему .remove() элементу для удаления, в то время как может быть вызван непосредственно для удаляемого элемента.
+
+Мы также узнали о следующих полезных свойствах:
+
+	.firstChild
+	.firstElementChild
+	.parentElement
+
+Разница между .firstChild и .firstElementChild заключается в том, .firstElementChild что всегда будет возвращаться первый элемент,
+а .firstChild могут быть возвращены пробелы (если они есть) для сохранения форматирования исходного исходного кода HTML.
+
+	
+	
+### Style
+	
+В этом разделе мы рассмотрим управление стилем страницы и элемента с помощью следующих свойств и методов:
+
+	.style.<prop>
+	.cssText
+	.setAttribute()
+	.className
+	.classList
+	
+#### Специфика CSS
+
+Чтобы добиться успеха в этом разделе, вам нужно будет понять, как работает CSS Specificity. Согласно MDN, «специфичность»:
+
+средства, с помощью которых браузеры решают, какие значения свойств CSS наиболее актуальны для элемента и, следовательно, будут применяться.
+
+По сути, чем ближе правило стиля к элементу, тем оно конкретнее.
+Например, правило в атрибуте стиля элемента переопределит правило стиля для этого элемента в таблице стилей CSS.
+Также существует специфика используемого типа селектора. _ID_ более конкретен, чем класс.
+
+Если вы хотите узнать больше о специфике CSS, воспользуйтесь следующими ссылками:
+
+	Специфика MDN
+	Изменение атрибута стиля элемента
+
+Вернемся к вашим знаниям о CSS.
+При попытке стилизовать элемент самые конкретные правила, которые вы можете написать для элемента,
+записываются в style атрибуте этого элемента .
+К счастью для нас, мы можем получить доступ к style атрибуту элемента с помощью .style свойства!
+```
+const mainHeading = document.querySelector('h1');
+
+mainHeading.style.color = 'red';
+```
+Теперь я хочу указать, что при использовании .style свойства вы можете изменять только один стиль CSS за раз.
+Вот почему в предыдущем коде есть .style.color = 'red'и не только .style = 'red'.
+
+	
+	
+	
+#### Добавление нескольких стилей одновременно
+Мы видели, как .style.<property> синтаксис позволяет нам изменить только одну часть стиля для элемента.
+Поэтому, если бы мы хотели установить цвет элемента, цвет фона и размер шрифта, нам пришлось бы использовать три отдельные строки кода:
+```
+const mainHeading = document.querySelector('h1');
+
+mainHeading.style.color = 'blue';
+mainHeading.style.backgroundColor = 'orange';
+mainHeading.style.fontSize = '3.5em';
+```
+... и это только для установки трех стилей. Представьте, если бы нам понадобилось 15 или 20 разных стилей!
+Таким образом, .style.property синтаксис идеально подходит для установки одного стиля за раз, но не подходит для управления несколькими стилями.
+
+К счастью, мы можем использовать это .style.cssText свойство для одновременной установки нескольких стилей CSS!
+```
+const mainHeading = document.querySelector('h1');
+
+mainHeading.style.cssText = 'color: blue; background-color: orange; font-size: 3.5em';
+```
+	
+Обратите внимание, что при использовании .style.cssText свойства вы пишете стили CSS так же, как в таблице стилей; так ты пишешь, font-sizeа не fontSize.
+Это отличается от использования индивидуального .style.<property> способа.
+
+```
+<p id="quizzing-quizzes" style="color: orange;">Howdy</p>
+```
+Какие из следующих стилей будут применены для указанного выше элемента после выполнения этого кода?
+
+```
+document.querySelector('#quizzing-quizzes').style.cssText = 'width: 30px; textDecoration: underline;';
+```
+	
+	
+#### Установка атрибутов элемента
+Другой способ набора стилей для элемента , чтобы обойти .style.<property> и .style.cssText свойства вообще и использовать .setAttribute() метод:
+```
+const mainHeading = document.querySelector('h1');
+
+mainHeading.setAttribute('style', 'color: blue; background-color: orange; font-size: 3.5em;');
+```
+	
+
+	.setAttribute() Не только для укладки
+Этот setAttribute() метод предназначен не только для стилизации элементов страницы.
+Вы можете использовать этот метод для установки любого атрибута для элемента.
+Если вы хотите присвоить элементу идентификатор, вы можете это сделать!:
+```
+const mainHeading = document.querySelector('h1');
+
+// add an ID to the heading's sibling element
+mainHeading.nextElementSibling.setAttribute('id', 'heading-sibling');
+
+// use the newly added ID to access that element
+document.querySelector('#heading-sibling').style.backgroundColor = 'red';
+```
+	
+Последние две строки можно было бы объединить в одну, чтобы обойти установку идентификатора и просто стилизовать элемент напрямую:
+```
+mainHeading.nextElementSibling.style.backgroundColor = 'red';
+```
+... но это было просто, чтобы продемонстрировать, что с помощью JavaScript можно установить атрибут,
+который влияет на DOM, который затем можно использовать немедленно
+
+	
+	
+### Доступ к классам элемента
+Первое свойство элемента, которое мы рассмотрим, - это .className свойство.
+Это свойство возвращает строку всех классов элемента. Если элемент имеет следующий HTML-код:
+```
+<h1 id="main-heading" class="ank-student jpk-modal">Learn Web Development at Udacity</h1>
+```
+Мы могли бы использовать .className для доступа к списку классов:
+	
+```
+const mainHeading = document.querySelector('#main-heading');
+
+// store the list of classes in a variable
+const listOfClasses = mainHeading.className;
+
+// logs out the string "ank-student jpk-modal"
+console.log(listOfClasses);
+```
+.className Свойство возвращает разделенный пробелами строку классов. 
+К сожалению, это не самый идеальный формат.
+Однако мы можем преобразовать эту разделенную пробелами строку в массив с помощью строкового метода JavaScript .split():
+```
+const arrayOfClasses = listOfClasses.split(' ');
+
+// logs out the array of strings ["ank-student", "jpk-modal"]
+console.log(arrayOfClasses);
+```
+	
+Теперь, когда у нас есть массив классов, мы можем выполнять любые вычисления с большим объемом данных:
+
+	используйте for цикл для просмотра списка имен классов
+	используйте, .push() чтобы добавить элемент в список
+	используйте, .pop() чтобы удалить элемент из списка
+	.className является свойством, поэтому мы можем установить его значение, просто присвоив свойству строку:
+```
+mainHeading.className = "im-the-new-class";
+```
+Приведенный выше код удаляет все классы, которые изначально были в class атрибуте элемента, и заменяет его единственным классом im-the-new-class.
+
+Поскольку .className возвращает строку, это затрудняет добавление или удаление отдельных классов.
+Как я упоминал ранее, мы можем преобразовать строку в массив, а затем использовать различные методы массива для поиска класса,
+удалить его из списка, а затем обновить .className его, добавив оставшиеся классы.
+Однако мы не хотим делать всю эту работу! Воспользуемся новым .classList свойством.
+
+###### .classList свойство
+.classList Свойство новее , чем .className свойство, но гораздо лучше, проверить это:
+	
+```
+<h1 id="main-heading" class="ank-student jpk-modal">Learn Web Development at Udacity</h1>
+const mainHeading = document.querySelector('#main-heading');
+
+// store the list of classes in a variable
+const listOfClasses = mainHeading.classList;
+
+// logs out ["ank-student", "jpk-modal"]
+console.log(listOfClasses);
+```	
+	
+	
+	
+.classList Свойство имеет ряд свойств своей собственной.
+Вот некоторые из наиболее часто используемых:
+
+	.add() - добавить класс в список
+	.remove() - удалить класс из списка
+	.toggle() - добавить класс, если он не существует, или удалить его из списка, если он уже существует
+	.contains() - возвращает логическое значение в зависимости от того, существует ли класс в списке или нет
+	
+Краткое содержание страницы стиля
+В этом разделе мы узнали много нового! Мы посмотрели:
+
+	изменение отдельных стилей с помощью .style.<prop>
+	одновременное обновление нескольких стилей с помощью .style.cssText
+	получение / установка списка классов с помощью .className
+	получение / установка / переключение классов CSS с помощью .classList
+Я рекомендую вам из списка техник, которые вы изучили в этом разделе, использовать это .classList свойство чаще, чем какие-либо другие.
+	.classList на сегодняшний день является наиболее полезным свойством из всех, и помогает уберечь стили CSS от кода JavaScript.	
 	
 ## 5. 
 	
