@@ -363,7 +363,7 @@ With operator 'typeof' we can check a type.
 
   
   
-  # Lecture_4
+# Lecture_4
 
   Operators & Type Corection
 
@@ -955,7 +955,7 @@ void expression
   
   
   
-  # Lecture_5
+# Lecture_5
   
   Strings & Numbers
   
@@ -1363,11 +1363,11 @@ console.log(typeof str2); // object
   
   
 
-	# Lecture_6
+# Lecture_6
 	
-	### Objects
+### Objects
 	
-	#### Object creation
+#### Object creation
 	
 ```
 	{
@@ -1433,7 +1433,7 @@ const car {
 	console.log(car.model); // A8
 ```
 	
-	###Delete properties
+### Delete properties
 	
 ```
 	delete car.color;
@@ -1482,7 +1482,7 @@ const car {
 ```
 	
 	
-	### Copy objects
+### Copy objects
 	
 ```
 	let obj1 = {
@@ -1537,7 +1537,7 @@ const car {
 ```
 	
 	
-	### Object property descriptors
+### Object property descriptors
 	
 With property descriptors we can:
 	- protect property from updating/deleting
@@ -1546,7 +1546,7 @@ With property descriptors we can:
 	- modify setter and getter of the value
 
 
-	#### Descriptor structure
+#### Descriptor structure
 	
 Объект дескриптора JS может содержать следующие свойства:
 	- configurable - логическое значение, указывает может ли быть изменено значение дескриптора и может ли свойство быть удалено из объекта (по умолчанию false);
@@ -1557,9 +1557,9 @@ With property descriptors we can:
 	- set - функция, которая вызывается в момент присваивания свойству нового значения и единственным параметром принимает присваиваемое значение.
 	
 	
-	#### Descriptors methods
+#### Descriptors methods
 	
-	#### Object.getOwnPropertyDescriptor()
+#### Object.getOwnPropertyDescriptor()
 	
 ```
 	const user = {};
@@ -1590,7 +1590,7 @@ With property descriptors we can:
 ```
 	
 	
-	#### Object.defineProperty()
+#### Object.defineProperty()
 
 ```
 	const creditCard = {cvv: 1234};	
@@ -1617,7 +1617,7 @@ With property descriptors we can:
 	
 ```
 
-	#### Descriptor: configurable
+#### Descriptor: configurable
 	
 	Configurable - logical value (true или false) and stands for possibility of changing or deleting property.
 	
@@ -1640,7 +1640,7 @@ With property descriptors we can:
 ```
 	
 	
-	#### Descriptor: enumerable
+#### Descriptor: enumerable
 	
 	Enumerable - hide property for counting methods, for example, in for...in loop
 	
@@ -1685,7 +1685,7 @@ With property descriptors we can:
 ```	
 	
 	
-	#### Descriptor: value
+#### Descriptor: value
 	
 ```
 	let obj = {};
@@ -1698,7 +1698,7 @@ With property descriptors we can:
 		
 ```
 	
-	#### Descriptor: get
+#### Descriptor: get
 	
 	get - function which returns a value of the property. It’s possible to use this in the function.
 
@@ -1738,7 +1738,7 @@ With property descriptors we can:
 	
 	
 	
-	#### Descriptor: set
+#### Descriptor: set
 	
 	set - function, which is running when property value changes
 
@@ -1794,7 +1794,7 @@ With property descriptors we can:
 ```	
 	
 	
-	#### Descriptors types
+#### Descriptors types
 	
 	Descriptors types:
 		- accessors (access descriptors)
@@ -1804,7 +1804,7 @@ With property descriptors we can:
 	
 	
 	
-	### Object wrapper
+### Object wrapper
 	
 ```
 	// creating with literal
@@ -1822,9 +1822,9 @@ With property descriptors we can:
 	
 ```
 	
-	### Object methods
+### Object methods
 	
-	#### Object.defineProperty()
+#### Object.defineProperty()
 	
 ```
 	let obj = {mark: 'BMW'};
@@ -1861,7 +1861,7 @@ With property descriptors we can:
 ```		
 	
 	
-	#### Object.getOwnPropertyDescriptor()
+#### Object.getOwnPropertyDescriptor()
 ```
 	let obj = Object.defineProperty({}, 'mark', {
 	    configurable: true,
@@ -1883,7 +1883,7 @@ With property descriptors we can:
 	```		
 	
 	
-	#### Object.keys()
+#### Object.keys()
 	
 ```
 	let obj = {mark: 'Mercedes', model: 'C180', year: 2021};
@@ -1896,7 +1896,7 @@ With property descriptors we can:
 ```	
 	
 	
-	#### Object.values()
+#### Object.values()
 	
 ```
 	let obj = {mark: 'Mercedes', model: 'C180', year: 2021};
@@ -1921,7 +1921,7 @@ With property descriptors we can:
 	
 	
 	
-	#### Object.assign()
+#### Object.assign()
 
 	
 ```
@@ -2036,7 +2036,7 @@ With property descriptors we can:
 ```	
 
 	
-	#### Object.freeze()
+#### Object.freeze()
 	
 ```
 	let obj = Object.freeze({mark: 'Mercedes'});
@@ -2046,7 +2046,7 @@ With property descriptors we can:
 	console.log(obj);  // {mark: 'Mercedes'}
 ```	
 	
-	#### Object.isFrozen()
+#### Object.isFrozen()
 	
 ```
 	let obj = Object.freeze({mark: 'Mercedes'});
@@ -2054,7 +2054,7 @@ With property descriptors we can:
 	console.log(Object.isFrozen(obj));  // true
 ```		
 	
-	#### Object.preventExtensions()
+#### Object.preventExtensions()
 	
 ```
 	let obj = Object.preventExtensions({mark: 'Mercedes'});
@@ -2064,7 +2064,7 @@ With property descriptors we can:
 	console.log(obj);  // {mark: 'BMW'}
 ```		
 	
-	#### Object.isExtensible()
+#### Object.isExtensible()
 	
 ```
 	let obj = Object.preventExtensions({mark: 'Mercedes'});
@@ -2074,7 +2074,7 @@ With property descriptors we can:
 
 	
 	
-	## Object prototype
+## Object prototype
 	
 ```
         let person = {
@@ -2099,9 +2099,9 @@ With property descriptors we can:
 ```
 	
 	
-	#### Object.setPrototypeOf()
+#### Object.setPrototypeOf()
 	
-	#### Object.getPrototypeOf()
+#### Object.getPrototypeOf()
 	
 ```
         let person = {
@@ -2168,9 +2168,9 @@ With property descriptors we can:
 	
 	
 	
-	# Lecture_7
+# Lecture_7
 	
-	### Array
+### Array
 	
 	
 ```
@@ -2180,7 +2180,7 @@ With property descriptors we can:
 	console.log(numbers[1]); // 2
 ```
 	
-	#### Changing arrays
+#### Changing arrays
 	
 ```
 	let cities = ['Minsk', 'Prague', 'London'];
@@ -2226,7 +2226,7 @@ With property descriptors we can:
 ```
 
 	
-	#### Arrays methods
+#### Arrays methods
 	
 	Convert ....
 	
@@ -2467,7 +2467,7 @@ var removed = myFish.splice(2);
 	console.log(resultIndex1);  // c
 ```
 
-	#### Array.some()
+#### Array.some()
 
 ```
 	arr.some(callback(element[, index[, array]])[, thisArg]);
@@ -2487,7 +2487,7 @@ function isBiggerThan10(element, index, array) {
 [12, 5, 8, 1, 4].some(isBiggerThan10); // true
 ```
 	
-	#### Array.prototype.every()
+#### Array.prototype.every()
 	
 ```
 	arr.every(callback(currentValue[, index[, array]])[, thisArg])
@@ -2757,11 +2757,11 @@ things.sort(); // ['1 Слово', '2 Слова', 'Слово', 'слово']
 	
 ```	
 	
-	# Lecture_8
+# Lecture_8
 	
-	# Functions
+# Functions
 	
-	## Functions creating
+## Functions creating
 	
 ```
 	function function_name(argument_1, argument_2, ..., argument_N){
@@ -4082,7 +4082,7 @@ const citiesAndCountries = {
 	
 	
 	
-	# Lecture_10
+# Lecture_10
 	
 ## Dom. Part 1
 	
@@ -4183,24 +4183,24 @@ firstDiv.remove();
 ```
 	
 	
-	### Style
+### Style
 
 ```
 	
 ```
 	
-	### Change attributes
+### Change attributes
 	
-	#### Working with attributes
-	
-	
+#### Working with attributes
 	
 	
-	# Lecture_11
 	
-	# Dom Part 2
 	
-	## 1. Events types
+# Lecture_11
+	
+# Dom Part 2
+	
+## 1. Events types
 	
 Mouse
 	
@@ -4214,9 +4214,9 @@ User events
 	
 
 	
-	## 2. Events handing
+## 2. Events handing
 	
-	### addEventListener
+### addEventListener
 ```	
 <!DOCTYPE html>
 <html lang="en">
@@ -4245,7 +4245,7 @@ User events
 </body>
 </html>	
 ```	
-	###### removeEventListener
+###### removeEventListener
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -4282,14 +4282,14 @@ User events
 </body>
 </html>
 ```
-	## 3. 
+## 3. 
 	
-	## 4. Control events flow
+## 4. Control events flow
 	
 	
 	
-	## 5. 
+## 5. 
 	
-	## 6.
+## 6.
 	
 	
