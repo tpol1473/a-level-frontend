@@ -1494,7 +1494,6 @@ Configurable - logical value (true или false) and stands for possibility of c
 	Object.defineProperty(obj, 'city' {
 	  configurable: true
 	});
-
 ```
 
 #### Descriptor: enumerable
@@ -1538,7 +1537,6 @@ Enumerable - hide property for counting methods, for example, in for...in loop
 
 	console.log(creditCard);  // name, number
 	console.log(creditCard.cvv);  // 1234
-
 ```
 
 #### Descriptor: value
