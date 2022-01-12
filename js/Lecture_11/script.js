@@ -1,24 +1,30 @@
-function clickElement(el){
-    el.style.display = "flex"; 
-}
+const nav = document.querySelector('.content>ul');
 
-const homeParagraf = document.getElementsByClassName("home");
-const newsParagraf = document.getElementsByClassName("news");
-const videosParagraf = document.getElementsByClassName("videos");
-const picturesParagraf = document.getElementsByClassName("pictures");
-const aboutParagraf = document.getElementsByClassName("about");
-const contactParagraf = document.getElementsByClassName("contact");
+const boxes = document.getElementsByClassName('box');
 
-function clickElement(homeParagraf);
-function clickElement(newsParagraf);
-function clickElement(videosParagraf);
-function clickElement(picturesParagraf);
-function clickElement(aboutParagraf);
-function clickElement(contactParagraf);
+function filterBoxes(targetValue) {
+    let currentBox;
 
-homeParagraf.addEventListener('click', clickElement);
-newsParagraf.addEventListener('click', clickElement);
-videosParagraf.addEventListener('click', clickElement);
-picturesParagraf.addEventListener('click', clickElement);
-aboutParagraf.addEventListener('click', clickElement);
-contactParagraf.addEventListener('click', clickElement);
+    for (let i = 0; i < boxes.length; i++) {
+        boxes[i].classList.remove('visible');
+
+        if (boxes[i].dataset.type === targetValue) {
+            currentBox = boxes[i];  
+        }
+    }
+
+    return currentBox;
+};
+
+
+function clickElement(el) {
+    const targetClassName = el.target.classList[0]; 
+
+    const currentBox = filterBoxes(targetClassName);
+
+    if (currentBox) {
+        currentBox.classList.add('visible');
+    }
+};
+
+nav.addEventListener('click', clickElement);
