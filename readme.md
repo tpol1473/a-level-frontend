@@ -23,6 +23,8 @@ Content:
   - [#Lecture_9](#Lecture_9)
   - [#Lecture_10](#Lecture_10)
   - [#Lecture_11](#Lecture_11)
+  - [#Lecture_12](#Lecture_12)
+  - [#Lecture_13](#Lecture_13)
 
 
 
@@ -5912,4 +5914,26 @@ setTimeout() Резюме
 
 Зная, как работает цикл обработки событий JavaScript, мы можем использовать этот setTimeout()метод для написания кода, 
 позволяющего браузеру обрабатывать взаимодействие с пользователем.	
+	
+
+	
+	
+	
+	
+	
+# Lecture_12
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+# Lecture_13
+	
+	
+## Dom. Part 3
 	
