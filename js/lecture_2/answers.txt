@@ -2,9 +2,9 @@ var a;
 let b = 2;
 
 function makeSomeCoolStaff() {
-  console.log(a); // 1) a = undefine
+  console.log(a); // 1) a = undefined
   console.log(b); // 2) b = 2
-  console.log(c); // 3) c = undefine
+  console.log(c); // 3) c = error - нет такой переменной
 
   const c = 5;
   
@@ -17,13 +17,13 @@ function makeSomeCoolStaff() {
     console.log(c); // 6) c = 5
   }
 
-  console.log(a); // 7) a = 3
+  console.log(a); // 7) a = undefined - ссьілка на глобальную переменную
   console.log(b); // 8) b = 4
   console.log(c); // 9) c = 5
 }
 
 makeSomeCoolStaff();
 
-console.log(a); // 10) a = undefine
+console.log(a); // 10) a = undefined
 console.log(b); // 11) b = 4
-console.log(c); // 12) c = undefine
+console.log(c); // 12) c = error - нет такой переменной
