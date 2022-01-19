@@ -5480,7 +5480,7 @@ pageFooter.addEventListener('click', function iceCream () {
 
     footerDetails.textContent = 'Everyone should eat ice cream!';
 });
-
+```
 
 РАСПОЛОЖЕНИЕ ЦИКЛА СОБЫТИЙ
 
@@ -5592,7 +5592,7 @@ setTimeout() Резюме
 Зная, как работает цикл обработки событий JavaScript, мы можем использовать этот setTimeout()метод для написания кода, 
 позволяющего браузеру обрабатывать взаимодействие с пользователем.	
 	
-```
+
 	
 	
 	
