@@ -3777,10 +3777,200 @@ const citiesAndCountries = {
 
 ## Dom. Part 1
 
+Working with DOM elements
+
+	DOM structure
+	Getting elements
+	Updating elements
+	Removing elements
+
+### 1. DOM structure
+
+#### DOM => document
+
+```
+console.log(document)
+  document
+    <html>
+      <head>...</head>
+      <body>...</body>
+    </html>  
+```
+
+#### 2. Getting elements
+
+	getElementsByTagName() - returns a collection of  HTMLElement objects based on tag name
+	getElementsByClassName() - returns a collection of  HTMLElement objects based on class name
+	getElementById() - returns an  HTMLElement object with current id (only first one)
+	querySelector() - returns the first HTMLElement object based on CSS selectors
+
+```
+document.getElementsByTagName('h1');
+document.getElementsByClassName('panel');
+document.getElementById('chat');
+document.querySelector('h1');
+document.querySelector('.panel');
+document.querySelector('#chat');
+
+```
+
+### Getting elements
+
+	querySelector() - returns the first HTMLElement object based on CSS selectors
+
+```
+<a href="some-url" class="my-class-name" id="test" title="My custom link" disabled>Link</a>
+
+document.querySelector('a');
+document.querySelector('.my-class-name');
+document.querySelector('a.my-class-name');
+document.querySelector('#test');
+document.querySelector('a[disabled]');
+document.querySelector('a[href=”some-url]”');
+```
+
+#### Getting elements in the document
+
+	getElementsByTagName() - returns a collection of  HTMLElement objects based on tag name
+	getElementsByClassName() - returns a collection of  HTMLElement objects based on class name
+	getElementById() - returns an  HTMLElement object with current id (only first one)
+	querySelector() - returns the first HTMLElement object based on CSS selectors
+
+```
+<body>
+  <h1>Title</h1>
+  <div class="panel"></div>
+  <div id="chat"></div>
+</body>
+
+
+let h1 = document.getElementByTagName('h1');
+console.log(h1); // HTMLCollection [h1]
+
+let divClassPanel = document.getElementByClassName('panel');
+console.log(divClassPanel); // HTMLCollection [div.panel]
+
+let divChat = document.getElementById('chat');
+console.log(divChat); // <div id="chat"></div>
+
+let divClassPanelSelector = document.querySelector('div.panel');
+console.log(divClassPanelSelector); // <div class="panel"></div>
+
+let divIdChatSelector = document.querySelector('div#chat');
+console.log(divIdChatSelector); // <div id="chat"></div>
+
+console.log(divClassPanel[0] === divClassPanelSelector);  // true
+console.log(divChat === divIdChatSelector); // true
+```
+
+
+
+```
+<body>
+  <nav id="menu">
+    <div>Home</div>
+    <div>Catalog</div>
+    <div>Contacts</div>
+  </nav>
+
+  <div id="cart">
+    <div>Product 1</div>
+    <div>Product 2</div>
+  </div>
+</body>
+
+
+
+let cart = document.getElementById('cart');
+let products = document.getElementByTagName('div');
+
+console.log(products.length);  // 2
+```
+
+#### 3. Updating elements
+
+##### 3.1 What is DOM element?
+
+DOM element has a lot props and methods to work with (link to MDN). - https://developer.mozilla.org/ru/docs/Web/API/Element
+
+	Element.id - to get id
+	Element.classList - to work with classes
+	Element.attributes - to work with attributes
+	Element.style - to work with styles
+	Element.children - to get child nodes
+	Element.innerHTML - to update HTML inside the element
+	Element.textContent - to update inner text
+
+	Element.addEventListener() - to handle events
+	Element.click() - to handle click event
+	Element.appendChild() - to add new child node
+	…
+
+##### 3.2 Add new elements
+
 ### Add new element
 
+	appendChild() - gets a new element and add it into the current element.
+	insertBefore() - gets 2 arguments: element that we want to add, element after which to add
+
+
 ```javascript
-let h1 = document.createElement;
+let h1 = document.createElement('h1');
+h1.textContent = 'Title';
+
+document.getElementById('wrapper').appendChild(h1);
+
+
+
+let child_1 = document.createElement('div');
+child_1.setAttribute('id', 'child_1');
+
+let parent = document.getElementById('parent'),
+    child_2 = document.getElementById('child_2');
+
+parent.insertBefore(child_1, child_2);
+```
+
+####  after()
+
+after() - gets a new element and add it arter the current element.
+
+```
+let child_2 = document.createElement('div'),
+    child_2.setAttribute('id', 'child_2');
+    
+let child_1 = document.getElementById('child_1');
+
+child_1.after(child_2);
+
+```
+
+##### Additional properties HTML elements:
+
+	parentNode - прямой родитель;
+	firstChild - первый прямой дочерний элемент;
+	lastChild - последний прямой дочерний элемент;
+	nextSibling - следующий элемент в структуре, находящийся на одном уровне иерархии с текущим элементом;
+	previousSibling - предыдущий элемент в структуре, находящийся на одном уровне иерархии с текущим элементом.
+
+##### Is element was rendered?
+
+```
+<div id="parent">
+    <div id child></div>
+</div>
+
+let child = document.getElementById('child');
+alert(child.isConnected);  // true
+
+child.remove();
+
+alert(child.isConnected);  // false
+```
+
+
+
+```
 //console.log(document.getElementById('test-id'));
 // const button = document.getElementById('test-id');
 //debugger;
@@ -3872,19 +4062,133 @@ firstDiv.remove();
 // myList.after(wrapper);
 ```
 
-### Style
+### 3.2 Style elements
 
-### Change attributes
+```
+<div id="block"></div>
 
-#### Working with attributes
+const block = document.getElementById('block');
 
-#Lecture 11
+block.style.backgroundColor = '#f00';
+block.style.height = '100px';
+block.style.width = '100px';
+```
+
+#### style.cssText
+
+```
+<div id="block"></div>
+
+const block = document.getElementById('block');
+
+block.style.cssText = 'backgroundColor: #f00; height: 100px; width: 100px;';
+```
+
+#### setAttribute(‘style’, ‘...’)
+
+```
+<div id="block"></div>
+
+const block = document.getElementById('block');
+
+block.setAttribute('style', 'backgroundColor: #f00;height: 100px;width: 100px;');
+```
+
+
+### 3.3 Change attributes
+
+	getAttribute() - takes attr name and gets its value
+	setAttribute() - takes attr name with its value and sets it
+	hasAttribute() - true or false if attr exists
+	removeAttribute() - delete the attr
+	
+```
+let element = document.createElement('div');
+
+element.setAttribute('id', 'element_1');
+
+alert(element.getAttribute('id'));  // element_1
+alert(element.hasAttribute('id'));  // true
+
+element.removeAttribute('id');
+
+alert(element.getAttribute('id'));  // null
+alert(element.hasAttribute('id'));  // false
+
+```
+
+
+### 4. Removing elements
+
+	removeChild() - вызывается применительно к элементу, у которого необходимо удалить прямой дочерний элемент, аргументом принимает удаляемый HTML-тег и возвращает ссылку на него;
+
+	remove() - вызывается применительно к элементу, который необходимо удалить из DOM.
+
+
+#### removeChild()
+
+```
+<nav>
+    <div>Home</div>
+    <div>Products</div>
+    <div>Contacts</div>
+</nav>
+
+let nav = document.getElementByTagName('nav')[0];
+let firstNavItem = nav.getElementByTagName('div')[0];
+
+nav.removeChild(firstNavItem);
+```
+
+
+#### remove()
+
+```
+<nav>
+    <div>Home</div>
+    <div>Products</div>
+    <div>Contacts</div>
+</nav>
+
+let nav = document.getElementByTagName('nav')[0];
+let firstNavItem = nav.getElementByTagName('div')[0];
+
+firstNavItem.remove();
+```
+
+
+#### Recap
+
+	JS was created to manipulate with HTML elements on the page
+	With help of JS we can:
+		get elements
+		update them
+		remove
+
+
+#### Useful links
+
+	document - https://developer.mozilla.org/ru/docs/Web/API/Document
+	DOM - about DOM structure, properties and methods - https://doka.guide/js/dom/#iz-chego-sostoit-dom
+	Element - about DOM elements - https://doka.guide/js/element/
+	NodeList - https://developer.mozilla.org/ru/docs/Web/API/NodeList
+
+
+
+# Lecture 11
 
 # Dom Part 2
 
+Diving in events.
+Keyboard & mouse events
+
 ## 1. Events types
 
-Mouse Keyboard Control elements events Browser User events
+	mouse events (click, double click, cursor moving, etc.);
+	keyboard events (pressing and releasing a key);
+	control elements events (focus/blur forms fields, form submitting, etc.);
+	browser events (page loading, screen resizing, etc.);
+	user events (custom events).
 
 ## 2. Events handing
 
@@ -3951,11 +4255,127 @@ Mouse Keyboard Control elements events Browser User events
 </html>
 ```
 
-## 3.
+## 3. Events stages
+
+	Событие сначала идёт сверху вниз. Эта стадия называется «стадия перехвата» (capturing stage).
+	Событие достигло целевого элемента. Это – «стадия цели» (target stage).
+	После этого событие начинает всплывать. Это – «стадия всплытия» (bubbling stage).
 
 ## 4. Control events flow
 
-## 5.
+	preventDefault() - prevent default browser’s event flow
+	stopPropagation() - prevent event bubbling
+
+#### preventDefault()
+
+```
+<form>
+  <input type="text" id="field" />
+</form>
+
+let field = document.getElementById('field');
+
+field.addEventListener('keydown', event => event.preventDefault());
+```
+
+#### stopPropagation()
+```
+<form>
+  <input type="text" id="field" />
+</form>
+
+let field = document.getElementById('field');
+
+field.addEventListener('keydown', event => event.preventDefault());
+```
+
+
+
+
+
+## 5. Events
+### 5.1. Keyboard Events
+
+	keydown - the keyboard key has been pressed
+	keyup - the keyboard key has been released
+```
+<form>
+  <input type="text" id="field" />
+</form>
+
+let field = document.getElementById('field');
+
+field.addEventListener('keydown', event => console.log(`Key ${event.key} is down`));
+field.addEventListener('keyup', event => console.log(`Key ${event.key} is up`));
+```
+
+#### Keyboard event props
+	key - the value of the key pressed
+	keyCode - the ASCII code of the key pressed
+	code - the pseudo code of the key pressed
+	altKey - true if alt key was pressed when the event was fired
+	ctrlKey - true if ctrl key was pressed when the event was fired
+	shiftKey - true if shift key was pressed when the event was fired
+
+It is better to you use the key property to identify a key because the values for the code property can
+vary from implementation to implementation.
+
+https://stackblitz.com/edit/js-keycodes
+
+#### 5.2. Mouse Events
+
+	click - a click event
+	contextmenu - when the context menu is opened, e.g. on a right mouse button click
+	wheel - scroll event
+	dblclick - a double click event
+	mousedown - any mouse button was pressed
+	mouseup - any mouse button was released
+	mousemove - when the mouse is moved over the element
+	mouseover - when the mouse is moved over an element or one of its child elements
+	mouseout - when the mouse is moved out of an element, and when the mouse enters a child elements
+
+##### click
+A click is an action in which the button was pressed and released.
+So, click will be triggered after the mousedown and mouseup events. The same goes for the contextmenu event.
+
+```
+<button id="btn">Button</button>
+let button = document.getElementById('btn');
+
+button.addEventListener('click', event => alert('Button clicked'));
+
+```
+##### mousemove
+
+```
+button.addEventListener('mousemove', event => console.log(`X: ${event.clientX}, Y: ${event.clientY}`));
+
+```
+##### mouseover, mouseout
+
+There are also mouseenter and mouseleave events, which are identical to mouseover and mouseout, 
+only mouseenter and mouseleave don't propagate up the DOM.
+```
+button.addEventListener('mouseover', event => alert('Inside button'));
+button.addEventListener('mouseout', event => alert('Outside button'));
+```
+##### Recap
+
+	addEventListener() and removeEventListener()
+	event stages: capturing, targeting, bubbling
+	event types:    
+		mouse
+		keyboard
+		document
+		control (form)
+		custom
+
+##### Useful links
+about events from MDN - https://developer.mozilla.org/en-US/docs/Web/Events?retiredLocale=uk
+about events from Doka - https://developer.mozilla.org/en-US/docs/Web/Events?retiredLocale=uk
+
+
+
 
 ## 6.
 	
@@ -3985,7 +4405,8 @@ monitorEvents(document);
 // turn off the displaying of all events on the document object.
 unmonitorEvents(document);
 ```
-Последняя небольшая информация monitorEvents- это то, что это только для целей разработки / тестирования. Его не следует использовать для производственного кода.	
+Последняя небольшая информация monitorEvents- это то, что это только для целей разработки / тестирования.
+Его не следует использовать для производственного кода.	
 	
 	
 	
@@ -4007,7 +4428,8 @@ unmonitorEvents(document);
 Элемент, документ и окно являются наиболее распространенными целями событий, но другие объекты также могут быть целями событий ...
 
 EventTarget находится в верхней части цепочки. Это означает, что он не наследует никаких свойств или методов от других интерфейсов.
-Однако любой другой интерфейс наследуется от него и, следовательно, содержит его свойства и методы. Это означает, что каждое из следующих событий является «целью события»;
+Однако любой другой интерфейс наследуется от него и, следовательно, содержит его свойства и методы. 
+Это означает, что каждое из следующих событий является «целью события»;
 
 	document объект
 	элемент абзаца
@@ -4752,7 +5174,8 @@ document.body.appendChild(fragment); // reflow and repaint here -- once!
 
 Мы также рассмотрели, как измерить, сколько времени требуется для запуска кода с использованием performance.now().
 
-Наконец, мы рассмотрели использование DocumentFragment для предотвращения проблем с производительностью и предотвращения добавления ненужных элементов в DOM.		
+Наконец, мы рассмотрели использование DocumentFragment для предотвращения проблем с производительностью и 
+предотвращения добавления ненужных элементов в DOM.		
 
 			
 			
@@ -5177,17 +5600,410 @@ setTimeout() Резюме
 	
 # Lecture_12
 	
+# DOM. Part 3
+	
+## Browser, control events & Forms handling
+
+	Events
+		keyboard
+		mouse
+		browser
+		control element
+
+	Working with forms
+
+### 1. Events
+#### 1.1. Browser Events
+	
+	DOMContentLoaded - DOM structure was built
+	load - DOM structure was built + all scripts and styles files was loaded
+	resize - change browser’s window size
+	scroll - scrolls the page or an element
+	beforeunload / unload - before/when page will be closed
+	online / offline - detects if user is online/offline
+
+	
+##### DOMContentLoaded / load
+```
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    console.log('DOM fully loaded and parsed');
+  });
+
+for( let i = 0; i < 10000000000; i++)
+{} // This synchronous script is going to delay parsing of the DOM,
+   // so the DOMContentLoaded event is going to launch later.
+</script>
+
+<p>Some useful content</p>
+```
+	
+
+```Html
+<div class="controls">
+  <button id="reload" type="button">Reload</button>
+</div>
+
+<div class="event-log">
+  <label>Event log:</label>
+  <textarea readonly class="event-log-contents" rows="8" cols="30"></textarea>
+</div>
+```
+	
+```Javascript
+const log = document.querySelector('.event-log-contents');
+const reload = document.querySelector('#reload');
+
+reload.addEventListener('click', () => {
+  log.textContent ='';
+  window.setTimeout(() => {
+      window.location.reload(true);
+  }, 200);
+});
+
+window.addEventListener('load', (event) => {
+    log.textContent = log.textContent + 'load\n';
+});
+
+document.addEventListener('readystatechange', (event) => {
+    log.textContent = log.textContent + `readystate: ${document.readyState}\n`;
+});
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    log.textContent = log.textContent + `DOMContentLoaded\n`;
+});
+```
+		
+	
+##### resize / scroll
+	
+The current dimensions of the document can be found using the window.innerWidth and window.innerHeight properties.
+```
+<p>Resize the browser window to fire the <code>resize</code> event.</p>
+<p>Window height: <span id="height"></span></p>
+<p>Window width: <span id="width"></span></p>
+```
+	
+```
+const heightOutput = document.querySelector('#height');
+const widthOutput = document.querySelector('#width');
+
+function reportWindowSize() {
+  heightOutput.textContent = window.innerHeight;
+  widthOutput.textContent = window.innerWidth;
+}
+
+window.addEventListener('resize', reportWindowSize);
+```
+
+
+###### beforeunload / unload
+	
+In the most modern browsers it is impossible to prevent user from close the current tab or change the url :(
+
+	
+###### online / offline
+```Html
+<div id="status"></div>
+<div id="log"></div>
+<p>This is a test</p>
+```
+```Css
+#status {
+  position: fixed;
+  width: 100%;
+  font: bold 1em sans-serif;
+  color: #FFF;
+  padding: 0.5em;
+}
+
+#log {
+  padding: 2.5em 0.5em 0.5em;
+  font: 1em sans-serif;
+}
+
+.online {
+  background: green;
+}
+
+.offline {
+  background: red;
+}
+```
+	
+```Javascript
+window.addEventListener('load', function() {
+  var status = document.getElementById("status");
+  var log = document.getElementById("log");
+
+  function updateOnlineStatus(event) {
+    var condition = navigator.onLine ? "online" : "offline";
+
+    status.className = condition;
+    status.innerHTML = condition.toUpperCase();
+
+    log.insertAdjacentHTML("beforeend", "Event: " + event.type + "; Status: " + condition);
+  }
+
+  window.addEventListener('online',  updateOnlineStatus);
+  window.addEventListener('offline', updateOnlineStatus);
+});
+```
+	
+#### 1.2. Control Events
+
+	focus - element becomes in the focus
+	blur - element loses out the focus
+	copy/ cut / paste - work with user selection events	
+	
+##### focus / blur
+FocusEvent - implemented by the focus and blur events has a relatedTarget property,
+which stores a link to the previous active element, if there was none, the relatedTarget value will be null;
+
+```Html
+<form>
+  <input id="field1" type="text" placeholder="name"/>
+  <p id="field1-error" class="hidden">Please fill me!</p>
+  <br>
+  <br>
+  <input id="field2" type="text" placeholder="email"/>
+    <br>
+  <br>
+  <button>Submit</button>
+</form>
+```
+	
+```Css
+.hidden {
+  display: none;
+}
+```
+	
+```Javascript
+let field1 = document.getElementById('field1'),
+    field2 = document.getElementById('field2'),
+    field1Error = document.getElementById('field1-error');
+
+field1.addEventListener('focus', () => {
+    field1Error.classList.add('hidden');
+});
+
+field1.addEventListener('blur', () => {
+  if(!field1.value) {
+    field1Error.classList.remove('hidden');
+  }
+});
+```
+
+##### copy / cut / paste
+```
+<div class="source" contenteditable="true">Try copying text from this box...</div>
+<div class="target" contenteditable="true">...and pasting it into this one</div>
+```
+
+```	
+div.source, div.target {
+    border: 1px solid gray;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    height: 1rem;
+    background-color: #e9eef1;
+}
+```
+
+```Javascript
+const source = document.querySelector('div.source');
+const target = document.querySelector('div.target');
+
+
+source.addEventListener('copy', (event) => {
+    const selection = document.getSelection();
+  
+    event.clipboardData.setData('text/plain', selection.toString().toUpperCase());
+    event.preventDefault();
+});
+
+source.addEventListener('cut', (event) => {
+    const selection = document.getSelection();
+  
+    console.log(selection.toString());
+});
+
+target.addEventListener('paste', (event) => {
+      const paste = event.clipboardData.getData('text/plain');
+  
+      console.log(paste);
+})
+```
+	
+### 2. Working with forms
+	
+#### 2.1. Basic props and methods
+##### Form object (HTMLFormElement) props
+	name - the value of the name attribute
+	action - the value of the action attribute
+	method - the value of the method attribute
+	novalidate - true if the form has the novalidate attribute
+	elements - contains an HTMLFormControlsCollection object with all form fields
+	length - number of form fields
+
+#### Form methods
+	
+	submit() - initiates a submit event relative to the form and sends its value to the URL specified in the action attribute using the HTTP method specified in the method;
+	reset() - resets the form value to its initial state;
+	checkValidity() - returns true if all form fields are valid, otherwise returns false;
+	reportValidity() - returns true if all form fields are valid, otherwise it triggers an invalid event for each invalid form field element.	
+
+```
+document.forms.loginForm; // получение формы loginForm
+
+document.forms.loginForm.password; // получение поля password формы loginForm
+```
+	
+```Html
+<form name="loginForm">
+  <input name="login" type="text" />
+  <input name="password" type="password" />
+  
+  <button type="submit">Log In</button>
+</form>
+```
+	
+```Javascript
+document.forms.loginForm.addEventListener('submit', event => {
+  event.preventDefault();
+  
+  console.log('Elements count: ', event.target.length); // 3
+
+  console.log('Login: ', event.target.login.value); // значение поля login
+  console.log('Password: ', event.target.password.value); // значение поля password
+
+  event.target.reset(); // сброс значения формы в начальное состояние
+  
+});
+```
+	
+##### Form Validation
+
+###### checkValidity() / reportValidity() - indicates if form is valid;
+	
+The HTMLFormElement.reportValidity() method returns true if the element's child controls satisfy their validation constraints.
+When false is returned, cancelable invalid events are fired for each invalid child and validation problems are reported to the user.
+	
+```
+<form name="orderForm"  novalidate>
+  <input name="product" type="text" required />
+  <input name="count" type="text" pattern="[0-9]{1,}" />
+  
+  <button type="submit">Order</button>
+</form>
+```
+
+```Javascript
+
+document.forms.orderForm.addEventListener('submit', event => {
+  if(!event.target.reportValidity())
+    event.preventDefault();
+});
+
+document.forms.orderForm.product.addEventListener('invalid', event => {
+  alert('Product field is invalid');
+  event.preventDefault();
+});
+document.forms.orderForm.count.addEventListener('invalid', event => {
+  alert('Count field is invalid');
+  event.preventDefault();
+}); 
+```
+	
+##### 2.2. Form elements validity state
+	
+###### inputElement.validity.[state name]
+
 	
 	
+##### Form element ValidityState
 	
+	valueMissing - true if the required attribute is set and the field is empty;
+	patternMismatch - true if the field value does not match the regular expression specified by the pattern attribute;
+	typeMismatch - true if the field value does not match the type specified by the type attribute;
+	stepMismatch - true if the value does not match the limit specified by the step attribute;
 	
+```
+document.forms.orderForm.addEventListener('submit', (event) => {
+	if (!event.target.reportValidity()) {
+	  event.preventDefault();
 	
+	  if (event.target.product.validity.valueMissing) {
+	    alert('Product field is empty');
+	  }
+	}
+});
+```
 	
+##### Form element ValidityState
 	
+	valueMissing - true if the required attribute is set and the field is empty;
+	patternMismatch - true if the field value does not match the regular expression specified by the pattern attribute;
+	typeMismatch - true if the field value does not match the type specified by the type attribute;
+	stepMismatch - true if the value does not match the limit specified by the step attribute;
+	tooLong - true if the field value by the number of characters exceeds the limit specified by the maxlength attribute;
+	tooShort - true if the field value is less than the limit specified by the minlength attribute by the number of characters;
+	rangeUnderflow - true if the field value is greater than the value specified by the max attribute;
+	rangeOverflow - true if the field value is less than the value specified by the min attribute;
+	valid - true if the field's value complies with all constraints set for it;
+	customError - true if the field has custom validation set.
+	
+```Html
+    <form name="loginForm" novalidate="true">
+      <input name="login" placeholder="login" required />
+      <input name="password" type="password" placeholder="password" minLength="8" required/>
+
+      <button type="submit">Save</button>
+      <button type="reset">Reset</button>
+    </form>
+```
+	
+```Javascript
+document.forms.loginForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  
+  const form = event.target;
+  
+  if (form.reportValidity()){
+    alert('Success!');
+    form.reset();
+    return;
+  }
+  
+  if (form.login.validity.valueMissing) {
+    alert('Login field is empty');
+  } else if (form.password.validity.valueMissing) {
+    alert('Password field is empty');
+  }else if (form.password.validity.tooShort) {
+    alert('Password is too short');
+  }
+});
+```	
+
+#### Recap
+	To handle browser’s events we can add listeners on window or document objects:
+		DOMContentLoaded / load
+		resize / scroll
+		beforeunload / unload
+		online / ofline
+	We can additionally control user’s interaction with page based on focus / blue
+	Extend default copy / cut / paste events
+	Be careful with forms handling and don’t forget for validation
+
+	
+#### Useful links
+About events - https://www.freecodecamp.org/news/javascript-events-explained-in-simple-english/
+Form validation - reportValidity() - https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reportValidity
+
 	
 	
 # Lecture_13
 	
-	
-## Dom. Part 3
+
 	
