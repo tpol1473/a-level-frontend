@@ -6006,4 +6006,174 @@ Form validation - reportValidity() - https://developer.mozilla.org/en-US/docs/We
 # Lecture_13
 	
 
+## Object-oriented Programing
+	
+### 1. Object-oriented Programming
+	
+#### 1.1. Basics
+	
+#### Benefits of OOP
+	
+	OOP models complex things as reproducible, simple structures
+	Reusable, OOP objects can be used across programs
+	Allows for class-specific behavior through polymorphism
+	Easier to debug, classes often contain all applicable information to them
+	Secure, protects information through encapsulation
+
+#### 1.2. Principles
+	
+##### Encapsulation
+	
+Encapsulation is the mechanism of hiding of data implementation by restricting access to public methods. 
+Instance variables are kept private and accessor methods are made public to achieve this.
+	
+##### Abstraction
+
+Abstract means a concept or an idea which is not associated with any particular instance. 
+E.g., one class should not know the inner details of another in order to use it, just knowing the interfaces should be good enough.
+
+##### Inheritance
+	
+Inheritance expresses “is-a” and/or “has-a” relationship between two objects. 
+Using Inheritance, In derived classes we can reuse the code of existing super classes.
+	
+##### Polymorphism
+	
+Polymorphism means one name (or method) could have many forms (implementations).
+
+##### 2. Classes
+	
+##### 2.1. Function declaration
+	
+##### 2.2. Class declaration
+	
+```
+//родительский класс Transport
+class Transport{
+  constructor(name, passengersSeats){
+    this.name = name;
+    this.passengersSeats = passengersSeats;
+  }
+}
+
+//дочерний класс Car
+class Car extends Transport{
+  constructor(mark, model, year, passengersSeats){
+    super('Car', passengersSeats);
+    
+    this.mark = mark;
+    this.model = model;
+    this.year = year;
+  }
+}
+
+//дочерний класс Plane
+class Plane extends Transport{
+  constructor(mark, model, maxHeight, passengersSeats){
+    super('Plane', passengersSeats);
+    
+    this.mark = mark;
+    this.model = model;
+    this.maxHeight = maxHeight;
+  }
+}
+
+let carObj = new Car('BMW', 'X5', 2020, 4);
+let planeObj = new Plane('Boeing', '787-9', 13100, 250);
+
+console.log(carObj);
+/*
+{
+  name: "Car"
+  passengersSeats: 4
+  mark: "BMW"
+  model: "X5"
+  year: 2020
+}
+*/
+
+console.log(planeObj);
+/*
+{
+  name: "Plane"
+  passengersSeats: 250
+  mark: "Boeing"
+  model: "787-9"
+  maxHeight: 13100
+}
+*/
+```
+	
+```
+class Parent{
+  constructor(){
+    this.a = 1;
+  }
+  
+  printGreeting(){
+    console.log('Hello, world!');
+  }
+}
+
+class Child extends Parent{
+  constructor(){
+    super();
+    
+    this.a = 2;
+  }
+  
+  printGreeting(){
+    console.log('Hello, everybody!');
+  }
+}
+
+let child = new Child();
+
+child.printGreeting(); //Hello, everybody!
+
+console.log(child.a); // 2
+```
+	
+```
+class Circle{
+  constructor(radius){
+    this.radius = radius;
+  }
+  
+  static getPI(){
+    return 3.14;
+  }
+
+  static getGreater(circle1, circle2){
+    let s1 = Math.pow(circle1.radius, 2) * this.getPI();
+    let s2 = Math.pow(circle2.radius, 2) * this.getPI();
+    
+    return s1 > s2 ? circle1 : circle2;
+  }
+}
+
+//можно вызвать метод без наличия объектов
+console.log(Circle.getPI()); // 3.14
+
+let circle1 = new Circle(5);
+let circle2 = new Circle(3);
+
+console.log(Circle.getGreater(circle1, circle2)); // {radius: 5}
+
+
+// CAN'T USE STATIC METHOD FROM PARENT CLASS
+// circle1.getPI(); //Uncaught TypeError: circle1.getPI is not a function
+```
+	
+##### Recap
+	
+	Basic OOP principles:
+		Encapsulation
+		Abstraction
+		Inheritance
+		Polymorphism
+	To define classes in JS use class keyword
+
+
+	
 	
