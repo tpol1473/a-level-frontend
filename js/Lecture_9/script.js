@@ -72,7 +72,6 @@ const getNameOfDay = (day, lang) => {
   //       alert('Data not found');
   //       break;
   //   }
-  // }
 
   const namesOfDays = {
     ru: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
@@ -96,8 +95,15 @@ const getNameOfDay = (day, lang) => {
 
   // console.log(arr[1]); // Joe
   //
+  // get values by properties
+  console.log(namesOfDays[lang][day - 1]);
 };
 
-//console.log(getNameOfDay(7));
-//console.log(getNameOfDay(7, 'en'));
-console.log(getNameOfDay(7, 'ru'));
+
+getNameOfDay(7); // 'Sunday'
+getNameOfDay(7, 'en'); // 'Sunday'
+getNameOfDay(3, 'ru'); // 'Среда'
+
+// task 2 ??
+
+// task 3 ??
