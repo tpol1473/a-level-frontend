@@ -332,4 +332,8 @@ document.forms.filtersForm.addEventListener('submit', (e) => {
  *  - add listener
  *  - get values from inputs
  * 4. handle form submit => generate content
+<<<<<<< HEAD
  */
+=======
+ */
+>>>>>>> ee220baedaeecafaf9fe3540ef57550d7197e610

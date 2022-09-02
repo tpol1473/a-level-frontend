@@ -8,11 +8,9 @@ function getMinValue(value1, value2) {
   } else {
     return value2;
   }
-return result;
 }
 
-getMinValue();
-console.log(getMinValue);
+console.log(getMinValue(10, 2)); // 2
 
 
 // Второй вариант решения
@@ -21,8 +19,7 @@ function getMinValue2(value1, value2) {
   return value1 < value2 ? value1 : value2;
 }
 
-getMinValue2();
-console.log(getMinValue2);
+console.log(getMinValue(10, 2)); // 2
 
 
 
@@ -31,14 +28,10 @@ Task 1.2   функция должна получать неограниченн
 */
 
 function getMinValue3() {
-  let result = Math.min(getMinValue3());
-  return result;
+  return Math.min(...arguments);
 }
 
-getMinValue3();
-console.log(getMinValue3);
-
-
+console.log(getMinValue(2, 3, 4)); // 2
 
 /*
 Task 2   функция должна получать 2 аргумента (два обьекта) и возвращать обьект, содержащий свойства и методы предыдущих
@@ -49,8 +42,8 @@ function joinObjects(obj1, obj2) {
   return result;
 };
 
-joinObjects(obj1, obj2);
-console.log(joinObjects);
+
+console.log(joinObjects(obj1, obj2));
 
 
 /*
@@ -61,40 +54,14 @@ const user = {
   name: 'Joe',
   age: 18
 };
-user.car = true;
 
-Object.defineProperty(user, 'hobby', {
-	set(value) 
-	{this.description = `My hobby is ${value}`;
-	}
+Object.defineProperty(user, 'toString', {
+  enumerable: false, // enumerable is 'false' by default
+  value: function () {
+    return 'My name is' + this.name + ', ' + 'I am ' + this.age;
+  }
 });
 
-console.log(user.description);	
+for (var key in user) console.log(key);
 
-user.hobby = 'cycling';
-
-console.log(user);
-
-Object.defineProperties(user, {
-	  mark: {
-	    configurable: true,
-	    enumerable: true,
-	    writable: true,
-	    value: 'BMW'
-	  },
-	  model: {
-	    configurable: true,
-	    enumerable: true,
-	    writable: true,
-	    value: 'X8'
-	  }
-	});
-let objValue = Object.values(user);
-let objKeys = Object.keys(user);
-
-console.log(objValue);  
-console.log(objKeys);  	
-console.log(user.toString());
-console.log(user.valueOf());
-
-
+console.log('Hello! ' + user); // 'Hello! My name isJack, I am 18'
